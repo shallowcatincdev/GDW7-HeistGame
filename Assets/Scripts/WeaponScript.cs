@@ -16,4 +16,9 @@ public class WeaponScript : ItemScript
 
     }
 
+    public void OnAttack() // TEMP - Move to player controller later
+    {
+        PrimaryAction();
+    }
+
 }

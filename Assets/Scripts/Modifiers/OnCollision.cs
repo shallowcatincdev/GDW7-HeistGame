@@ -5,11 +5,17 @@ public class OnColission : MonoBehaviour
 {
     // Allows events to trigger when object colides with somthing
 
-    public UnityEvent<Collision> onCollission;
+    public UnityEvent<Collision, ItemData> onCollission;
+    public ItemData data;
 
     private void OnCollisionEnter(Collision collision)
     {
-        onCollission.Invoke(collision);
+        if (data == null)
+        {
+            onCollission.Invoke(collision, data);
+        }
+
+        
     }
 
 }

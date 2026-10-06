@@ -8,4 +8,6 @@ public class ItemData : ScriptableObject
     public Image inventoryIcon;
     public int stackSize;
 
+    public float damageStrength;
+
 }

@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody rb;
-    
+    public Transform rotVector;
     private Marking mark;
     
     private float moveSpeed = 5f;
@@ -132,19 +132,25 @@ public class PlayerController : MonoBehaviour
     }
     public void Update()
     {
-        //Move Code -- still broken
-
-        Vector3 horizontal = (transform.right * moveAmount.x + transform.forward * moveAmount.y)* moveSpeed;
-        controller.Move((horizontal + Vector3.up * moveAmount.y) * Time.deltaTime);
-        
-                
+        // Camera
         lookVert += lookAmount.x * lookSpeed;
         lookHorz -= lookAmount.y * lookSpeed;
         lookHorz = Mathf.Clamp(lookHorz, -70f, 70f);
-        transform.rotation = Quaternion.Euler(lookHorz, lookVert, 0f);
+        rotVector.rotation = Quaternion.Euler(lookHorz, lookVert, 0f);
 
+
+        // Movement
+        Vector3 horizontal = (transform.right * moveAmount.x + transform.forward * moveAmount.y)* moveSpeed;
+
+        if(horizontal != Vector3.zero) // if moving update player rotation
+        {
+            transform.rotation = Quaternion.Euler(0f, lookVert, 0f); // TODO: Smooth rotation for player model
+        }
+
+        controller.Move((horizontal + Vector3.up * moveAmount.y) * Time.deltaTime);
         
-        //Jump Code
+                
+        // Jump
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5016212908782902234}
   - component: {fileID: 132328264082902854}
   - component: {fileID: 4913518360411330357}
+  - component: {fileID: 4790384170633982202}
   - component: {fileID: 1213948246512339709}
   m_Layer: 0
   m_Name: Sphere
@@ -167,6 +168,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 414ce14cf86c7ab43989fd6c500fa368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MakeNoise
+--- !u!114 &4790384170633982202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4903316197088284581}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c39fab8f0748d468ae888582f8f15d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyObject
 --- !u!114 &1213948246512339709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +210,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4913518360411330357}
         m_TargetAssemblyTypeName: MakeNoise, Assembly-CSharp
         m_MethodName: Noise
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4790384170633982202}
+        m_TargetAssemblyTypeName: DestroyObject, Assembly-CSharp
+        m_MethodName: DestroyObj
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -4,7 +4,11 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody rb;
     public Transform rotVector;
+    public Transform handVector;
     private Marking mark;
+
+    public AimPos aim;
+    public float handRotSpeed = 5f;
     
     private float moveSpeed = 5f;
     private float jumpForce = 1.5f;
@@ -46,8 +50,11 @@ public class PlayerController : MonoBehaviour
         //where the player will be able to shoot -- MarkEnemy is here for testing
         if (context.performed)
         {
-            mark.MarkEnemy();
-            Debug.Log("This is when the gun will shoot");
+            //mark.MarkEnemy();
+            
+
+
+
         }
     }
 
@@ -137,6 +144,10 @@ public class PlayerController : MonoBehaviour
         lookHorz -= lookAmount.y * lookSpeed;
         lookHorz = Mathf.Clamp(lookHorz, -70f, 70f);
         rotVector.rotation = Quaternion.Euler(lookHorz, lookVert, 0f);
+
+        // Hand Rotation
+         handVector.LookAt(aim.aimPoint);
+
 
 
         // Movement

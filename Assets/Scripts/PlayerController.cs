@@ -1,10 +1,23 @@
 using UnityEngine;
+using UnityEngine.Assemblies;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
+    // TEMP
+
+    public WeaponScript[] weapons;
+    public int currentWeapon;
+
+    // TEMP
+
+
     public Rigidbody rb;
-    
+    public Transform rotVector;
+    public Transform handVector;
     private Marking mark;
+
+    public AimPos aim;
+    public float handRotSpeed = 5f;
     
     private float moveSpeed = 5f;
     private float jumpForce = 1.5f;
@@ -46,8 +59,11 @@ public class PlayerController : MonoBehaviour
         //where the player will be able to shoot -- MarkEnemy is here for testing
         if (context.performed)
         {
-            mark.MarkEnemy();
-            Debug.Log("This is when the gun will shoot");
+            //mark.MarkEnemy();
+
+            // TODO in future this will interact with the inventory to find out the currently equipted item but for now will be hard coded.
+            weapons[currentWeapon].PrimaryAction();
+
         }
     }
 
@@ -132,19 +148,29 @@ public class PlayerController : MonoBehaviour
     }
     public void Update()
     {
-        //Move Code -- still broken
-
-        Vector3 horizontal = (transform.right * moveAmount.x + transform.forward * moveAmount.y)* moveSpeed;
-        controller.Move((horizontal + Vector3.up * moveAmount.y) * Time.deltaTime);
-        
-                
+        // Camera
         lookVert += lookAmount.x * lookSpeed;
         lookHorz -= lookAmount.y * lookSpeed;
         lookHorz = Mathf.Clamp(lookHorz, -70f, 70f);
-        transform.rotation = Quaternion.Euler(lookHorz, lookVert, 0f);
+        rotVector.rotation = Quaternion.Euler(lookHorz, lookVert, 0f);
 
+        // Hand Rotation
+         handVector.LookAt(aim.aimPoint);
+
+
+
+        // Movement
+        Vector3 horizontal = (transform.right * moveAmount.x + transform.forward * moveAmount.y)* moveSpeed;
+
+        if(horizontal != Vector3.zero) // if moving update player rotation
+        {
+            transform.rotation = Quaternion.Euler(0f, lookVert, 0f); // TODO: Smooth rotation for player model
+        }
+
+        controller.Move((horizontal + Vector3.up * moveAmount.y) * Time.deltaTime);
         
-        //Jump Code
+                
+        // Jump
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }

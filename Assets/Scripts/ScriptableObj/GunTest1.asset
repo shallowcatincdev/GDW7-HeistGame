@@ -15,7 +15,8 @@ MonoBehaviour:
   prefab: {fileID: 5951056034836991889, guid: 4fa326e6eda9e964682793927d832832, type: 3}
   inventoryIcon: {fileID: 0}
   stackSize: 1
-  bulletSpeed: 500
+  damageStrength: 0
+  bulletSpeed: 3000
   magCapacity: 12
   ammoType: 1
   bulletPrefab: {fileID: 4903316197088284581, guid: b4c807d3ef751bb4eacba952325073d2, type: 3}

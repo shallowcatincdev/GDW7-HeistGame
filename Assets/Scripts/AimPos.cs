@@ -5,6 +5,7 @@ public class AimPos : MonoBehaviour
 
     public float maxDistance = 50f;
     public Vector3 aimPoint;
+    public Transform shootRef;
 
     void Update()
     {
@@ -20,6 +21,10 @@ public class AimPos : MonoBehaviour
         {
             aimPoint = hit.point;
 
+        }
+        else
+        {
+            aimPoint = shootRef.position;
         }
 
     }

@@ -1,7 +1,16 @@
 using UnityEngine;
+using UnityEngine.Assemblies;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
+    // TEMP
+
+    public WeaponScript[] weapons;
+    public int currentWeapon;
+
+    // TEMP
+
+
     public Rigidbody rb;
     public Transform rotVector;
     public Transform handVector;
@@ -51,9 +60,9 @@ public class PlayerController : MonoBehaviour
         if (context.performed)
         {
             //mark.MarkEnemy();
-            
 
-
+            // TODO in future this will interact with the inventory to find out the currently equipted item but for now will be hard coded.
+            weapons[currentWeapon].PrimaryAction();
 
         }
     }

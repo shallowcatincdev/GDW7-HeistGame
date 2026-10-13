@@ -16,15 +16,25 @@ public class GunScript : WeaponScript
 
     public override void PrimaryAction()
     {
-        if (true)
+        if (itemInstance.ammoCount > 0)
         {
             projectileScript.SpawnProjectile(shootPoint.transform, data.bulletSpeed);
+            itemInstance.ammoCount--;
+        }
+        else
+        {
+            ReloadGun();
         }
     }
 
     public override void SecondaryAction()
     {
-        Debug.Log("Gun Secondary Action");
+        Debug.Log("Gun Secondary Action"); // TODO add scope-in Function
     }
    
+    public void ReloadGun()
+    {
+        itemInstance.ammoCount = data.magCapacity; // TEMP in future check total ammo levels, remove ammo from inventory, etc...
+    }
+
 }

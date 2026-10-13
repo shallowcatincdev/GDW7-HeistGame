@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         moveAmount = context.ReadValue<Vector2>();
         //Debug.Log($"Move input: {moveAmount}");
 
-    }    
+    }
     public void OnLook(InputAction.CallbackContext context)
     {
         //reads the look value and sets the mouse to be invisible and at the centre of the screen
@@ -59,11 +59,30 @@ public class PlayerController : MonoBehaviour
         //where the player will be able to shoot -- MarkEnemy is here for testing
         if (context.performed)
         {
-            //mark.MarkEnemy();
+            
 
             // TODO in future this will interact with the inventory to find out the currently equipted item but for now will be hard coded.
             weapons[currentWeapon].PrimaryAction();
 
+        }
+    }
+
+    public void OnReload(InputAction.CallbackContext context)
+    {
+        if (weapons[currentWeapon].itemInstance.isGunType)
+        {
+            weapons[currentWeapon].GetComponent<GunScript>().ReloadGun();
+        }
+    }
+
+    public void OnMark(InputAction.CallbackContext context)
+    {
+
+        Debug.Log("M");
+        if (context.performed)
+        {
+            Debug.Log("Mark");
+            mark.MarkEnemy();
         }
     }
 

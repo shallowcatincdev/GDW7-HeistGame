@@ -9,4 +9,6 @@ public class ItemScript : MonoBehaviour
     /// any code which must make reference to any of these items generaly shoud use functions in this script
     /// 
 
+    public ItemInstance itemInstance;
+
 }

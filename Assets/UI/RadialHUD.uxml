@@ -1,0 +1,5 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement name="RadialHolder" style="flex-grow: 1;">
+        <ui:VisualElement name="Background" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.596); backdrop-filter: blur(2);"/>
+    </ui:VisualElement>
+</ui:UXML>

@@ -22,19 +22,21 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed = 5f;
     private float jumpForce = 1.5f;
     private float gravity = -9.8f;
-    public float lookSpeed = 1f;
+    private float lookSpeed = 1f;
     private float lookVert;
     private float lookHorz;
     
     
-    private bool isCrouched = false;
-    private bool isProned = false;
-    private bool isSprinting = false;
+    public bool isCrouched = false;
+    public bool isProned = false;
+    public bool isSprinting = false;
     
     Vector2 moveAmount;
     Vector2 lookAmount;
     Vector2 velocity;
 
+    public int detectionRate = 0;
+    public bool isInBush = false;
     
     public CharacterController controller;
 
@@ -174,18 +176,20 @@ public class PlayerController : MonoBehaviour
         rotVector.rotation = Quaternion.Euler(lookHorz, lookVert, 0f);
 
         // Hand Rotation
-         handVector.LookAt(aim.aimPoint);
+        //handVector.LookAt(aim.aimPoint);
 
 
 
         // Movement
         Vector3 horizontal = (transform.right * moveAmount.x + transform.forward * moveAmount.y)* moveSpeed;
 
-        if(horizontal != Vector3.zero) // if moving update player rotation
+        /*
+         if(horizontal != Vector3.zero) // if moving update player rotation
         {
             transform.rotation = Quaternion.Euler(0f, lookVert, 0f); // TODO: Smooth rotation for player model
         }
-
+        */
+        
         controller.Move((horizontal + Vector3.up * moveAmount.y) * Time.deltaTime);
         
                 

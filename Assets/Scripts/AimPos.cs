@@ -9,6 +9,9 @@ public class AimPos : MonoBehaviour
 
     public LayerMask mask;
 
+    float disCache;
+    public float cacheTimer;
+
     void Update()
     {
         // 1. Define the origin point and the direction of the ray
@@ -26,11 +29,25 @@ public class AimPos : MonoBehaviour
         if (Physics.Raycast(origin, direction, out hit, maxDistance, mask))
         {
             aimPoint = hit.point;
-
+            Debug.DrawRay(origin, direction * hit.distance, Color.green);
+            disCache = hit.distance;
+            cacheTimer = 2f;
         }
         else
         {
-            aimPoint = shootRef.position;
+            
+
+            if (cacheTimer < 0 )
+            {
+                aimPoint = shootRef.position;
+            }
+            else
+            {
+                aimPoint = origin + (direction.normalized * disCache);
+                cacheTimer -= Time.deltaTime;
+            }
+            
+            Debug.DrawRay(origin, direction * maxDistance, Color.red);
         }
 
     }

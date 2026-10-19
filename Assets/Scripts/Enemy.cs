@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     //https://discussions.unity.com/t/solved-random-wander-ai-using-navmesh/581895/2 
     
     public NavMeshAgent agent;
-    public EnemyView view;
     
     public float wanderRadius;
     public float wanderTimer;

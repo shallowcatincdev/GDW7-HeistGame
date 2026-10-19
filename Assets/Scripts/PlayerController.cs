@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     private float moveSpeed = 5f;
     private float jumpForce = 1.5f;
     private float gravity = -9.8f;
-    private float lookSpeed = 1f;
+    public float lookSpeed = 1f;
     private float lookVert;
     private float lookHorz;
     
@@ -166,9 +166,6 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         mark = GetComponent<Marking>();
         rb = GetComponent<Rigidbody>();
-        rotVector = GetComponent<Transform>();
-        handVector = GetComponent<Transform>();
-        aim = GetComponent<AimPos>();
     }
     public void Update()
     {
@@ -179,20 +176,20 @@ public class PlayerController : MonoBehaviour
         rotVector.rotation = Quaternion.Euler(lookHorz, lookVert, 0f);
 
         // Hand Rotation
-        //handVector.LookAt(aim.aimPoint);
+        handVector.LookAt(aim.aimPoint);
 
 
 
         // Movement
         Vector3 horizontal = (transform.right * moveAmount.x + transform.forward * moveAmount.y)* moveSpeed;
 
-        /*
-         if(horizontal != Vector3.zero) // if moving update player rotation
+
+        if (horizontal != Vector3.zero) // if moving update player rotation
         {
             transform.rotation = Quaternion.Euler(0f, lookVert, 0f); // TODO: Smooth rotation for player model
         }
-        */
-        
+
+
         controller.Move((horizontal + Vector3.up * moveAmount.y) * Time.deltaTime);
         
                 

@@ -4,26 +4,46 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public NavMeshAgent agent;
-    public GameObject player;
-    public EnemyView eView;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    //Code to wander from:
+    //https://discussions.unity.com/t/solved-random-wander-ai-using-navmesh/581895/2 
+    
+    public NavMeshAgent agent;
+    public EnemyView view;
+    
+    public float wanderRadius;
+    public float wanderTimer;
+
+    private Transform target;
+    private float timer;
+
+    // Use this for initialization
+    void Start ()
     {
-        //player = GameObject.FindGameObjectWithTag("Player");
+        agent = GetComponent<NavMeshAgent> ();
+        timer = wanderTimer;
+    }
+  
+    // Update is called once per frame
+    void Update () {
+        timer += Time.deltaTime;
+
+        if (timer >= wanderTimer) {
+            Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
+            agent.SetDestination(newPos);
+            timer = 0;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (eView.isDetected)
-        {
-            //agent.SetDestination(player.transform.position);
-        }
-        else
-        {
-        }
-        
+    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) {
+        Vector3 randDirection = Random.insideUnitSphere * dist;
+
+        randDirection += origin;
+
+        NavMeshHit navHit;
+
+        NavMesh.SamplePosition (randDirection, out navHit, dist, layermask);
+
+        return navHit.position;
     }
 }

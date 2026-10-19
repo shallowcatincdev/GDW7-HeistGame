@@ -166,6 +166,9 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         mark = GetComponent<Marking>();
         rb = GetComponent<Rigidbody>();
+        rotVector = GetComponent<Transform>();
+        handVector = GetComponent<Transform>();
+        aim = GetComponent<AimPos>();
     }
     public void Update()
     {

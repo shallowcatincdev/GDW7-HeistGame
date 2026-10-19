@@ -495,9 +495,9 @@ MonoBehaviour:
   weapons: []
   currentWeapon: 0
   rb: {fileID: 0}
-  rotVector: {fileID: 266913286}
-  handVector: {fileID: 266913286}
-  aim: {fileID: 266913292}
+  rotVector: {fileID: 0}
+  handVector: {fileID: 0}
+  aim: {fileID: 0}
   handRotSpeed: 5
   isCrouched: 0
   isProned: 0
@@ -1167,8 +1167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   agent: {fileID: 1016987280}
-  player: {fileID: 266913282}
-  eView: {fileID: 1819341852}
+  wanderRadius: 50
+  wanderTimer: 30
 --- !u!1 &1040740457
 GameObject:
   m_ObjectHideFlags: 0

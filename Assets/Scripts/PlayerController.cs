@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public WeaponScript[] weapons;
     public int currentWeapon;
 
+    GameObject currentHeldWeapon;
+
     // TEMP
 
 
@@ -159,6 +161,41 @@ public class PlayerController : MonoBehaviour
             moveSpeed = 5f;
             jumpForce = 1.5f;
         }
+    }
+
+    public void OnNext()
+    {
+        if (weapons.Length == currentWeapon)
+        {
+            currentWeapon = 0;
+        }
+        else
+        {
+            currentWeapon++;
+        }
+        newWeapon();
+    }
+
+    public void OnPrevious()
+    {
+        if (0 == currentWeapon)
+        {
+            currentWeapon = weapons.Length;
+        }
+        else
+        {
+            currentWeapon--;
+        }
+
+        newWeapon();
+    }
+
+    void newWeapon()
+    {
+        Destroy(currentHeldWeapon);
+        currentHeldWeapon = null;
+
+        currentHeldWeapon = Instantiate<GameObject>(weapons[currentWeapon].itemInstance.itemData.prefab, handVector.transform);
     }
 
     public void Start()

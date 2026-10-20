@@ -18,6 +18,7 @@ public class Damage : MonoBehaviour
 
     void DamageObj(GameObject obj, ItemData data) 
     {
+        Debug.Log("Damage");
         if (data == null)
         {
 
@@ -29,6 +30,11 @@ public class Damage : MonoBehaviour
         else if (obj.TryGetComponent(out Damageable damageRef))
         {
             damageRef.DealDamage(data.damageStrength);
+
+        }
+        else
+        {
+
         }
     }
 

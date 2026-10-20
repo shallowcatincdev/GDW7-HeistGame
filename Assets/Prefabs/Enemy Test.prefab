@@ -15,7 +15,10 @@ GameObject:
   - component: {fileID: 1740755465542223174}
   - component: {fileID: 4683470469581968600}
   - component: {fileID: 3187004230869991234}
-  m_Layer: 0
+  - component: {fileID: 8863411028256087607}
+  - component: {fileID: 203154062939897266}
+  - component: {fileID: 5659943584140746035}
+  m_Layer: 3
   m_Name: Enemy Test
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -116,9 +119,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2
+  m_Height: 2.267608
   m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0, y: 0.13380396, z: 0}
 --- !u!195 &1740755465542223174
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -149,7 +152,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2164594220099284433}
   serializedVersion: 5
-  m_Mass: 1
+  m_Mass: 50
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -166,8 +169,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!114 &3187004230869991234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +186,58 @@ MonoBehaviour:
   agent: {fileID: 1740755465542223174}
   wanderRadius: 50
   wanderTimer: 30
+--- !u!114 &8863411028256087607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164594220099284433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3cde56264cff0b4fb236ff528c53ee1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Health
+  hp: 100
+  onHealthZero:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5659943584140746035}
+        m_TargetAssemblyTypeName: DestroyObject, Assembly-CSharp
+        m_MethodName: DestroyObj
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &203154062939897266
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164594220099284433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16b801ddfd67d514f9cf36b16b9b1781, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Damageable
+--- !u!114 &5659943584140746035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164594220099284433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c39fab8f0748d468ae888582f8f15d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DestroyObject
 --- !u!1 &6621645985253715203
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +251,7 @@ GameObject:
   - component: {fileID: 5389930956022847049}
   - component: {fileID: 85083677783532124}
   - component: {fileID: 6563051974700846090}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,9 +377,9 @@ GameObject:
   - component: {fileID: 797018983010586431}
   - component: {fileID: 4280026399137967538}
   - component: {fileID: 3077587204830987295}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Face
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

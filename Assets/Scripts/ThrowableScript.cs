@@ -1,7 +1,5 @@
 using UnityEngine;
 using UnityEngine.Events;
-using static UnityEditor.PlayerSettings;
-using static UnityEngine.Rendering.DebugUI.Table;
 
 public class ThrowableScript : WeaponScript
 {

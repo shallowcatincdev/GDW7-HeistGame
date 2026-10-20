@@ -27,9 +27,55 @@ public class Inventory : ScriptableObject
         return false;
     }
 
+    public int AddItem(ItemInstance itemToAdd, int targetIndex)
+    {
+        if (targetIndex > items.Count)
+        {
+            return -1; // Not in range
+        }
+        else if (items[targetIndex] != null)
+        {
+            return -2; // slot full TODO add check to add item stacking if supported
+        }
+        else if (itemToAdd == null)
+        {
+            return -3; // No item provided
+        }
+        else
+        {
+            items.Insert(targetIndex, itemToAdd);
+            return 1;
+        }
+    }
+
+    public void SwapItem(int indexOne, int indexTwo)
+    {
+        ItemInstance tempSlot = items[indexOne];
+        RemoveItem(indexOne);
+        AddItem(items[indexTwo], indexOne);
+        RemoveItem(indexTwo);
+        AddItem(tempSlot, indexTwo);
+        tempSlot = null;
+    }
+
     public void RemoveItem(ItemInstance itemToRemove)
     {
         items.Remove(itemToRemove);
+    }
+
+    public void RemoveItem(int index)
+    {
+        items.RemoveAt(index);
+    }
+
+    public ItemInstance GetItem(int index)
+    {
+        return items[index];
+    }
+
+    public int GetIndex(ItemInstance item)
+    {
+        return items.IndexOf(item);
     }
 
 }

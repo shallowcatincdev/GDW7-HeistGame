@@ -9,8 +9,6 @@ public class AimPos : MonoBehaviour
 
     public LayerMask mask;
 
-    float disCache;
-    public float cacheTimer;
 
     void Update()
     {
@@ -30,22 +28,10 @@ public class AimPos : MonoBehaviour
         {
             aimPoint = hit.point;
             Debug.DrawRay(origin, direction * hit.distance, Color.green);
-            disCache = hit.distance;
-            cacheTimer = 2f;
+
         }
         else
         {
-            
-
-            if (cacheTimer < 0 )
-            {
-                aimPoint = shootRef.position;
-            }
-            else
-            {
-                aimPoint = origin + (direction.normalized * disCache);
-                cacheTimer -= Time.deltaTime;
-            }
             
             Debug.DrawRay(origin, direction * maxDistance, Color.red);
         }

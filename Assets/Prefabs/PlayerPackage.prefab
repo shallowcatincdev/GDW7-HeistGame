@@ -399,6 +399,7 @@ GameObject:
   - component: {fileID: 4489445137126255734}
   - component: {fileID: 5439650063858926722}
   - component: {fileID: 5590331578867182955}
+  - component: {fileID: 6610187144554731552}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -811,6 +812,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Marking
   cam: {fileID: 7073011862952137103}
   markedMaterial: {fileID: 2100000, guid: 7f186f70d75cd2e4b8e0de9b881ab9e3, type: 2}
+--- !u!114 &6610187144554731552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5989898777509200157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e3456a0acfe15443aac08ef13f4254d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryController
+  inv: {fileID: 11400000, guid: a49bcfe6583c66c41b5c1cb4af40f427, type: 2}
 --- !u!1 &6201376585195483674
 GameObject:
   m_ObjectHideFlags: 0

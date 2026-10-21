@@ -10,7 +10,7 @@ public class OnCollision : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (data == null)
+        if (collision != null)
         {
             onCollission.Invoke(data, collision);
         }

@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd83f93c2456024eacc022dbe3979f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  projectile: {fileID: 7992623063301288387}
+  projectile: {fileID: 4903316197088284581, guid: cdc52b70601d8e74fb3b3180963af4b5, type: 3}
 --- !u!114 &3082883891508005816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,6 +141,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23383258ded5a0b49ab6524692bbe51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThrowableScript
+  itemInstance:
+    itemData: {fileID: 0}
+    gunData: {fileID: 0}
+    isGunType: 0
+    condition: 0
+    ammoCount: 8
+    icon: {fileID: 0}
+    uiName: 
   data: {fileID: 11400000, guid: 4a6982c9a6d8c2643b2aba773e59a6e9, type: 2}
   projectileScript: {fileID: 2473609593057407915}
   throwPoint: {fileID: 9111171642288811856}

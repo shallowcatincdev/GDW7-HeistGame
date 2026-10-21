@@ -7,14 +7,15 @@ public class ItemInstance
     public ItemData itemData;
     public GunData gunData;
     public bool isGunType;
-    public int condition;
     public int ammoCount;
+
+    public Texture2D icon;
+    public string uiName;
 
 
     public ItemInstance(ItemData _itemData)
     {
         itemData = _itemData;
-        condition = 100;
 
         if (itemData is GunData)
         {

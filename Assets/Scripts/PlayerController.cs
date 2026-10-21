@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public WeaponScript[] weapons;
     public int currentWeapon;
 
+    GameObject currentHeldWeapon;
+
     // TEMP
 
 
@@ -27,14 +29,16 @@ public class PlayerController : MonoBehaviour
     private float lookHorz;
     
     
-    private bool isCrouched = false;
-    private bool isProned = false;
-    private bool isSprinting = false;
+    public bool isCrouched = false;
+    public bool isProned = false;
+    public bool isSprinting = false;
     
     Vector2 moveAmount;
     Vector2 lookAmount;
     Vector2 velocity;
 
+    public int detectionRate = 0;
+    public bool isInBush = false;
     
     public CharacterController controller;
 
@@ -159,6 +163,41 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnNext()
+    {
+        if (weapons.Length == currentWeapon)
+        {
+            currentWeapon = 0;
+        }
+        else
+        {
+            currentWeapon++;
+        }
+        newWeapon();
+    }
+
+    public void OnPrevious()
+    {
+        if (0 == currentWeapon)
+        {
+            currentWeapon = weapons.Length;
+        }
+        else
+        {
+            currentWeapon--;
+        }
+
+        newWeapon();
+    }
+
+    void newWeapon()
+    {
+        Destroy(currentHeldWeapon);
+        currentHeldWeapon = null;
+
+        currentHeldWeapon = Instantiate<GameObject>(weapons[currentWeapon].itemInstance.itemData.prefab, handVector.transform);
+    }
+
     public void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -174,17 +213,19 @@ public class PlayerController : MonoBehaviour
         rotVector.rotation = Quaternion.Euler(lookHorz, lookVert, 0f);
 
         // Hand Rotation
-         handVector.LookAt(aim.aimPoint);
+        handVector.LookAt(aim.aimPoint);
 
 
 
         // Movement
         Vector3 horizontal = (transform.right * moveAmount.x + transform.forward * moveAmount.y)* moveSpeed;
 
-        if(horizontal != Vector3.zero) // if moving update player rotation
+
+        if (horizontal != Vector3.zero) // if moving update player rotation
         {
             transform.rotation = Quaternion.Euler(0f, lookVert, 0f); // TODO: Smooth rotation for player model
         }
+
 
         controller.Move((horizontal + Vector3.up * moveAmount.y) * Time.deltaTime);
         

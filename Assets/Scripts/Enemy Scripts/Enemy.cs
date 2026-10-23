@@ -7,11 +7,16 @@ public class Enemy : MonoBehaviour
     
     //Code to wander from:
     //https://discussions.unity.com/t/solved-random-wander-ai-using-navmesh/581895/2 
+
+    private PlayerController player;
     
     public NavMeshAgent agent;
     
-    public float wanderRadius;
-    public float wanderTimer;
+    public float wanderRadius = 10.0f;
+    public float wanderTimer = 3.0f;
+
+    public bool hasDestination;
+    public bool loud;
 
     private Transform target;
     private float timer;
@@ -21,20 +26,22 @@ public class Enemy : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent> ();
         timer = wanderTimer;
+        player = GameObject.Find ("Player").GetComponent<PlayerController> ();
     }
   
     // Update is called once per frame
     void Update () {
         timer += Time.deltaTime;
 
-        if (timer >= wanderTimer) {
+        if (timer >= wanderTimer || hasDestination == false && loud == false) {
             Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
             agent.SetDestination(newPos);
             timer = 0;
         }
+        
     }
 
-    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) {
+    private static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) {
         Vector3 randDirection = Random.insideUnitSphere * dist;
 
         randDirection += origin;
@@ -45,4 +52,10 @@ public class Enemy : MonoBehaviour
 
         return navHit.position;
     }
+
+    public void GoToPlayer()
+    {
+        agent.destination = player.transform.position;
+    }
+    
 }

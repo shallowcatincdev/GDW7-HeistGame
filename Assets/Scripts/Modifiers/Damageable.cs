@@ -12,6 +12,6 @@ public class Damageable : MonoBehaviour
 
     public void DealDamage(float amount)
     {
-        health.ChangeHealth(amount);
+        health.ChangeHealth(amount * -1);
     }
 }

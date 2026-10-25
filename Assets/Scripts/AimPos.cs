@@ -7,24 +7,33 @@ public class AimPos : MonoBehaviour
     public Vector3 aimPoint;
     public Transform shootRef;
 
+    public LayerMask mask;
+
+
     void Update()
     {
         // 1. Define the origin point and the direction of the ray
         Vector3 origin = transform.position;
         Vector3 direction = transform.forward; // Fires straight ahead
 
+        
+
         // 2. Create a variable to hold the information about what we hit
         RaycastHit hit;
 
+
+
         // 3. Perform the Raycast
-        if (Physics.Raycast(origin, direction, out hit, maxDistance))
+        if (Physics.Raycast(origin, direction, out hit, maxDistance, mask))
         {
             aimPoint = hit.point;
+            Debug.DrawRay(origin, direction * hit.distance, Color.green);
 
         }
         else
         {
-            aimPoint = shootRef.position;
+            
+            Debug.DrawRay(origin, direction * maxDistance, Color.red);
         }
 
     }

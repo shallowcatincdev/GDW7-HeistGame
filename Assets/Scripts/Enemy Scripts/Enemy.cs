@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public NavMeshAgent agent;
     
     public float wanderRadius = 10.0f;
-    public float wanderTimer = 3.0f;
+    public float wanderTimer = 300.0f;
 
     public bool hasDestination;
     public bool loud;
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
     void Update () {
         timer += Time.deltaTime;
 
-        if (timer >= wanderTimer || hasDestination == false && loud == false) {
+        if (timer >= wanderTimer && hasDestination == false && loud == false) {
             Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
             agent.SetDestination(newPos);
             timer = 0;

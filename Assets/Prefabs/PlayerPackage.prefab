@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2341444204987977369}
   - component: {fileID: 6105438427924501108}
   - component: {fileID: 2702328071808551807}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8408161632139712215}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CamTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -264,7 +264,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2141457590198089533}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerModelVector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8097521380508463551}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: RotationVector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3099246827601275248}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerPackage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3144960838337769408}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShootRef
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -399,7 +399,7 @@ GameObject:
   - component: {fileID: 6960359869417176075}
   - component: {fileID: 1793619375423400063}
   - component: {fileID: 519107556596664219}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -596,7 +596,7 @@ GameObject:
   - component: {fileID: 5910241334476230102}
   - component: {fileID: 5206104359498234655}
   - component: {fileID: 744250986838083381}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -708,7 +708,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1954028009031452016}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HandVector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -742,7 +742,7 @@ GameObject:
   - component: {fileID: 5161277467120777056}
   - component: {fileID: 982891092639332760}
   - component: {fileID: 9087912435995420065}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}

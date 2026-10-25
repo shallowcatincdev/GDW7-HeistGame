@@ -15,9 +15,6 @@ GameObject:
   - component: {fileID: 1740755465542223174}
   - component: {fileID: 4683470469581968600}
   - component: {fileID: 3187004230869991234}
-  - component: {fileID: 8863411028256087607}
-  - component: {fileID: 203154062939897266}
-  - component: {fileID: 5659943584140746035}
   m_Layer: 3
   m_Name: Enemy Test
   m_TagString: Enemy
@@ -317,6 +314,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyView
   player: {fileID: 0}
   isDetected: 0
+  timeBeforeAlert: 5
 --- !u!1 &6621645985253715203
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +442,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyView
   player: {fileID: 0}
   isDetected: 0
+  timeBeforeAlert: 5
 --- !u!1 &6798024874348077405
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,7 +457,7 @@ GameObject:
   - component: {fileID: 3077587204830987295}
   m_Layer: 3
   m_Name: Face
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -683,3 +682,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyView
   player: {fileID: 0}
   isDetected: 0
+  timeBeforeAlert: 5

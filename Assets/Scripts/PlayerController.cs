@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         {
             
 
-            // TODO in future this will interact with the inventory to find out the currently equipted item but for now will be hard coded.
+            // TODO in future this will interact with the inventory to find out the currently equipped item but for now will be hard coded.
             weapons[currentWeapon].PrimaryAction();
 
         }

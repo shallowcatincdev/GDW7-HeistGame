@@ -46,12 +46,12 @@ public class EnemyView : MonoBehaviour
             {
                 if (hit.transform == playerTransform)
                 {
-                    Debug.Log("Player is visible!");
+                    //Debug.Log("Player is visible!");
                     StartCoroutine(Investigate(timeBeforeAlert));
                 }
                 else
                 {
-                    Debug.Log($"Line of sight blocked by: {hit.transform.name}");
+                    //Debug.Log($"Line of sight blocked by: {hit.transform.name}");
                 }
             }
             isDetected = true;
@@ -153,7 +153,7 @@ public class EnemyView : MonoBehaviour
                 {
                     for (int i = 0; i < nearByEnemies.Length; i++)
                     {
-                        Debug.Log(nearByEnemies[i] + " has detected the player");
+                        //Debug.Log(nearByEnemies[i] + " has detected the player");
                         
                         nearByEnemies[i].GetComponent<Enemy>().agent.SetDestination(player.transform.position);
                         nearByEnemies[i].GetComponent<Enemy>().hasDestination = true;
@@ -182,7 +182,7 @@ public class EnemyView : MonoBehaviour
                 {
                     for (int i = 0; i < nearByEnemies.Length; i++)
                     {
-                        Debug.Log(nearByEnemies[i] + " is detected");
+                        //Debug.Log(nearByEnemies[i] + " is detected");
                         
                         nearByEnemies[i].GetComponent<Enemy>().agent.SetDestination(player.transform.position);
                         nearByEnemies[i].GetComponent<Enemy>().hasDestination = true;
@@ -210,7 +210,7 @@ public class EnemyView : MonoBehaviour
                 {
                     for (int i = 0; i < nearByEnemies.Length; i++)
                     {
-                        Debug.Log(nearByEnemies[i] + " is detected");
+                        //Debug.Log(nearByEnemies[i] + " is detected");
                         
                         nearByEnemies[i].GetComponent<Enemy>().agent.SetDestination(player.transform.position);
                         nearByEnemies[i].GetComponent<Enemy>().hasDestination = true;

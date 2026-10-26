@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31a01be9645c6b4418c2ab6edafdc3b0, type: 3}
   m_Name: ThrowTest1
   m_EditorClassIdentifier: Assembly-CSharp::ThrowableData
-  prefab: {fileID: 0}
+  prefab: {fileID: 7992623063301288387, guid: ff05ed73cfb484c48a9e6965dc658257, type: 3}
   inventoryIcon: {fileID: 0}
+  uiName: ThrowTest1
   stackSize: 5
+  damageStrength: 10
   ThrowSpeed: 200

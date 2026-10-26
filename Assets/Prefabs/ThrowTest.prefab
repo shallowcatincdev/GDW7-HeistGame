@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 7392834991777108795}
   - component: {fileID: 2473609593057407915}
   - component: {fileID: 3082883891508005816}
-  - component: {fileID: 8949513084413655953}
   m_Layer: 0
   m_Name: ThrowTest
   m_TagString: Untagged
@@ -128,7 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd83f93c2456024eacc022dbe3979f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  projectile: {fileID: 4903316197088284581, guid: cdc52b70601d8e74fb3b3180963af4b5, type: 3}
+  projectile: {fileID: 3925835586314088547, guid: 474dc2124698b7e43a4d2a2963f367c9, type: 3}
 --- !u!114 &3082883891508005816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,40 +144,10 @@ MonoBehaviour:
     itemData: {fileID: 0}
     gunData: {fileID: 0}
     isGunType: 0
-    condition: 0
     ammoCount: 8
-    icon: {fileID: 0}
-    uiName: 
   data: {fileID: 11400000, guid: 4a6982c9a6d8c2643b2aba773e59a6e9, type: 2}
   projectileScript: {fileID: 2473609593057407915}
   throwPoint: {fileID: 9111171642288811856}
---- !u!54 &8949513084413655953
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7992623063301288387}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &9111171642288811856
 GameObject:
   m_ObjectHideFlags: 0
@@ -203,10 +172,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9111171642288811856}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.151, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 3.29, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2409438472970395473}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}

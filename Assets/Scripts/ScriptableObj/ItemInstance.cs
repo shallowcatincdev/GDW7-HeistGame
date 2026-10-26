@@ -8,9 +8,7 @@ public class ItemInstance
     public GunData gunData;
     public bool isGunType;
     public int ammoCount;
-
-    public Texture2D icon;
-    public string uiName;
+    
 
 
     public ItemInstance(ItemData _itemData)

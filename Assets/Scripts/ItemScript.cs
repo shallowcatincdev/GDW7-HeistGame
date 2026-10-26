@@ -11,4 +11,10 @@ public class ItemScript : MonoBehaviour
 
     public ItemInstance itemInstance;
 
+
+    public void Init(ItemInstance instance)
+    {
+        itemInstance = instance;
+    }
+
 }

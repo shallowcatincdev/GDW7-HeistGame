@@ -3,14 +3,10 @@ using UnityEngine.Assemblies;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
-    // TEMP
-
-    public WeaponScript[] weapons;
-    public int currentWeapon;
-
-    GameObject currentHeldWeapon;
-
-    // TEMP
+    public InventoryController invCon;
+    public ItemInstance currentWeaponInstance;
+    
+    GameObject currentHeldWeapon = null;
 
 
     public Rigidbody rb;
@@ -56,15 +52,19 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
-        // TODO in future this will interact with the inventory to find out the currently equipped item but for now will be hard coded.
-        weapons[currentWeapon].PrimaryAction();
+        if(currentWeaponInstance != null)
+        {
+            currentHeldWeapon.GetComponent<WeaponScript>().PrimaryAction();
+        }
+        
+
     }
 
     public void OnReload(InputValue value)
     {
-        if (weapons[currentWeapon].itemInstance.isGunType)
+        if (currentWeaponInstance.isGunType && currentWeaponInstance != null)
         {
-            weapons[currentWeapon].GetComponent<GunScript>().ReloadGun();
+            currentHeldWeapon.GetComponent<GunScript>().ReloadGun();
         }
     }
 
@@ -122,17 +122,35 @@ public class PlayerController : MonoBehaviour
 
     public void OnNext()
     {
-        //TODO
+        ItemInstance equipNew = invCon.NextEquip();
+        if( equipNew == null )
+        {
+            Debug.Log("Null Weapon");
+        }
+        else if( equipNew == currentWeaponInstance)
+        {
+            Debug.Log("Same Weapon");
+        }
+        else
+        {
+            Debug.Log("NEW Weapon");
+            Debug.Log(equipNew.itemData.uiName);
+            newWeapon(equipNew);
+        }
     }
 
     public void OnPrevious()
     {
-        // TODO
+        invCon.PrevEquip();
     }
 
-    void newWeapon()
+    void newWeapon(ItemInstance equipNew)
     {
-        //TODO
+        Destroy(currentHeldWeapon);
+        currentHeldWeapon = null;
+        currentHeldWeapon = Instantiate<GameObject>(equipNew.itemData.prefab, handVector);
+        currentHeldWeapon.GetComponent<ItemScript>().Init(equipNew);
+        currentWeaponInstance = equipNew;
     }
 
     public void Start()

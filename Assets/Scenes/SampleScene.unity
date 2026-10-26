@@ -668,10 +668,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Test (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 2164594220099284433, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3095499163325313690, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -17.59
@@ -712,117 +708,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4265155841865856224, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-      propertyPath: m_Height
-      value: 2.267608
-      objectReference: {fileID: 0}
-    - target: {fileID: 4265155841865856224, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-      propertyPath: m_Center.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4265155841865856224, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-      propertyPath: m_Center.y
-      value: 0.13380396
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683470469581968600, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-      propertyPath: m_Mass
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683470469581968600, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    - target: {fileID: 4683470469581968600, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6563051974700846090, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1293497439}
-    - target: {fileID: 6621645985253715203, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-      propertyPath: m_Layer
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6798024874348077405, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6798024874348077405, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-      propertyPath: m_TagString
-      value: Untagged
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2164594220099284433, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1116652493}
-    - targetCorrespondingSourceObject: {fileID: 2164594220099284433, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1116652492}
-    - targetCorrespondingSourceObject: {fileID: 2164594220099284433, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1116652491}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
---- !u!1 &1116652490 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2164594220099284433, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-  m_PrefabInstance: {fileID: 1116652489}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1116652491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1116652490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35c39fab8f0748d468ae888582f8f15d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DestroyObject
---- !u!114 &1116652492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1116652490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16b801ddfd67d514f9cf36b16b9b1781, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Damageable
---- !u!114 &1116652493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1116652490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3cde56264cff0b4fb236ff528c53ee1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Health
-  hp: 100
-  onHealthZero:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1116652491}
-        m_TargetAssemblyTypeName: DestroyObject, Assembly-CSharp
-        m_MethodName: DestroyObj
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!4 &1116652500 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3095499163325313690, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
@@ -984,6 +878,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba94630593d10834ca60f33a4ee3c28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+--- !u!114 &1293497445 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6610187144554731552, guid: 960be0143adb5a541b5b72320d32b7d9, type: 3}
+  m_PrefabInstance: {fileID: 1559538594}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e3456a0acfe15443aac08ef13f4254d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryController
 --- !u!4 &1439998195 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3095499163325313690, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
@@ -1041,6 +946,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPackage
       objectReference: {fileID: 0}
+    - target: {fileID: 5439650063858926722, guid: 960be0143adb5a541b5b72320d32b7d9, type: 3}
+      propertyPath: invCon
+      value: 
+      objectReference: {fileID: 1293497445}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

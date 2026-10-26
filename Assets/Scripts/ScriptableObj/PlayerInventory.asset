@@ -13,16 +13,16 @@ MonoBehaviour:
   m_Name: PlayerInventory
   m_EditorClassIdentifier: Assembly-CSharp::Inventory
   items:
-  - itemData: {fileID: 0}
+  - itemData: {fileID: 11400000, guid: 040aabd102ef9214fb1e55a4637b3971, type: 2}
+    gunData: {fileID: 11400000, guid: 040aabd102ef9214fb1e55a4637b3971, type: 2}
+    isGunType: 1
+    ammoCount: 8
+  - itemData: {fileID: 11400000, guid: 4a6982c9a6d8c2643b2aba773e59a6e9, type: 2}
     gunData: {fileID: 0}
     isGunType: 0
-    ammoCount: 0
-    icon: {fileID: 0}
-    uiName: 
-  - itemData: {fileID: 0}
+    ammoCount: 10
+  - itemData: {fileID: 11400000, guid: b70cd6370a5c5b845aaa1c28e99fe0c6, type: 2}
     gunData: {fileID: 0}
     isGunType: 0
-    ammoCount: 0
-    icon: {fileID: 0}
-    uiName: 
+    ammoCount: 10
   maxItems: 10

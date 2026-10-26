@@ -46,12 +46,12 @@ public class EnemyView : MonoBehaviour
             {
                 if (hit.transform == playerTransform)
                 {
-                    Debug.Log("Player is visible!");
+                    //Debug.Log("Player is visible!");
                     StartCoroutine(Investigate(timeBeforeAlert));
                 }
                 else
                 {
-                    Debug.Log($"Line of sight blocked by: {hit.transform.name}");
+                    //Debug.Log($"Line of sight blocked by: {hit.transform.name}");
                 }
             }
             isDetected = true;

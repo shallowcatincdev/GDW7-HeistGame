@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GunData
   prefab: {fileID: 5951056034836991889, guid: 4fa326e6eda9e964682793927d832832, type: 3}
   inventoryIcon: {fileID: 0}
+  uiName: GunTest1
   stackSize: 1
   damageStrength: 10
   bulletSpeed: 3000

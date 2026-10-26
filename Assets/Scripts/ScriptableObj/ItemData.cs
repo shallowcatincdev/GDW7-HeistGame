@@ -6,6 +6,7 @@ public class ItemData : ScriptableObject
 {
     public GameObject prefab;
     public Image inventoryIcon;
+    public string uiName;
     public int stackSize;
 
     public float damageStrength;

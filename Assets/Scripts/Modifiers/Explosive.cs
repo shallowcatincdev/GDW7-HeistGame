@@ -1,11 +1,26 @@
 using UnityEngine;
 
+[RequireComponent(typeof(InstantiateObj))]
 public class Explosive : MonoBehaviour
 {
-    public ParticleSystem ExplosiveEffect;
+    InstantiateObj instObj;
+    public GameObject ExplosiveEffect;
+
+    private void Awake()
+    {
+        instObj = GetComponent<InstantiateObj>();
+    }
+
 
     public void Explode()
     {
-        ExplosiveEffect.Play();
+        instObj.SpawnObjReturn(ExplosiveEffect, transform);
     }
+
+
+
+    
+    
+        
+
 }

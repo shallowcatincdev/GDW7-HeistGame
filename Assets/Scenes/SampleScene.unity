@@ -950,6 +950,14 @@ PrefabInstance:
       propertyPath: invCon
       value: 
       objectReference: {fileID: 1293497445}
+    - target: {fileID: 5439650063858926722, guid: 960be0143adb5a541b5b72320d32b7d9, type: 3}
+      propertyPath: modelRotSpeed
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 5439650063858926722, guid: 960be0143adb5a541b5b72320d32b7d9, type: 3}
+      propertyPath: maxRelativeRotAngle
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

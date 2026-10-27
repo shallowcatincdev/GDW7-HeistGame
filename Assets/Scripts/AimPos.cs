@@ -32,7 +32,7 @@ public class AimPos : MonoBehaviour
         }
         else
         {
-            
+            aimPoint = shootRef.position;
             Debug.DrawRay(origin, direction * maxDistance, Color.red);
         }
 

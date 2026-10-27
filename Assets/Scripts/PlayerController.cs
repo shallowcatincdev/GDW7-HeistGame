@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.Assemblies;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
@@ -13,6 +14,10 @@ public class PlayerController : MonoBehaviour
     public Transform rotVector;
     public Transform handVector;
     private Marking mark;
+
+    public Quaternion targetRotation;
+    public float modelRotSpeed = 5000;
+    public float maxRelativeRotAngle;
 
     public AimPos aim;
     public float handRotSpeed = 5f;
@@ -178,8 +183,19 @@ public class PlayerController : MonoBehaviour
 
         if (horizontal != Vector3.zero) // if moving update player rotation
         {
-            transform.rotation = Quaternion.Euler(0f, lookVert, 0f); // TODO: Smooth rotation for player model
+            targetRotation = Quaternion.Euler(0f, lookVert, 0f); // TODO: Smooth rotation for player model
         }
+        else if (rotVector.rotation.eulerAngles.y - transform.rotation.eulerAngles.y > maxRelativeRotAngle)
+        {
+            targetRotation = Quaternion.Euler(0, lookVert - maxRelativeRotAngle, 0);
+        }
+        else if (rotVector.rotation.eulerAngles.y - transform.rotation.eulerAngles.y < maxRelativeRotAngle * -1)
+        {
+            targetRotation = Quaternion.Euler(0, lookVert + maxRelativeRotAngle, 0);
+        }
+
+        float step = modelRotSpeed * Time.deltaTime;
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, step);
 
 
         controller.Move((horizontal + Vector3.up * moveAmount.y) * Time.deltaTime);
@@ -189,5 +205,9 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
+
+    
+
 
 }

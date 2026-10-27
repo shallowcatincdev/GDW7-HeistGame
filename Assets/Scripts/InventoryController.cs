@@ -78,6 +78,41 @@ public class InventoryController : MonoBehaviour
             }
         }
 
+
+        if (holstered)
+        {
+            holstered = false;
+            return inv.items[currentlyEquipedItem];
+        }
+        else
+        {
+            bool itemFound = false;
+            int i = currentlyEquipedItem - 1;
+            while (!itemFound)
+            {
+                Debug.Log(i);
+                Debug.Log(inv.items.Count);
+                if (i <= 0)
+                {
+                    i = inv.items.Count;
+                }
+
+                if (i + currentlyEquipedItem * -1 > maxEquipSlots - 1 || i + currentlyEquipedItem * -1 >= inv.items.Count - 1)
+                {
+                    itemFound = true;
+                }
+                else if (inv.items[i] == null)
+                {
+                    i--;
+                }
+                else
+                {
+                    currentlyEquipedItem = i;
+                    return inv.items[currentlyEquipedItem];
+                }
+            }
+        }
+
         return null;
     }
 

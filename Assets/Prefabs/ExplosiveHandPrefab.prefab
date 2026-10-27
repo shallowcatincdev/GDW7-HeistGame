@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd83f93c2456024eacc022dbe3979f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Projectile
-  projectile: {fileID: 4903316197088284581, guid: ea9446f672059844ba143def7b3ff7ef, type: 3}
+  projectile: {fileID: 4903316197088284581, guid: cdc52b70601d8e74fb3b3180963af4b5, type: 3}
 --- !u!1 &7777029958443605023
 GameObject:
   m_ObjectHideFlags: 0

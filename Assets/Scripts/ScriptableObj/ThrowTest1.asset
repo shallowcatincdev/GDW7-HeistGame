@@ -17,4 +17,4 @@ MonoBehaviour:
   uiName: ThrowTest1
   stackSize: 5
   damageStrength: 10
-  ThrowSpeed: 200
+  ThrowSpeed: 600

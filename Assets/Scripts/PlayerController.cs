@@ -78,11 +78,6 @@ public class PlayerController : MonoBehaviour
         //mark.MarkEnemy();
     }
 
-    public void OnInteract(InputValue value)
-    {
-        // TODO
-    }
-
     public void OnCrouch(InputValue value)
     {
         //set player speed to be slower, and prevent jumping
@@ -122,6 +117,16 @@ public class PlayerController : MonoBehaviour
             isSprinting = false;
             moveSpeed = 5f;
         }
+    }
+
+    public void OnInteract()
+    {
+
+        if (aim.lookRef != null)
+        {
+            aim.lookRef.Activate();
+        }
+        
     }
 
 

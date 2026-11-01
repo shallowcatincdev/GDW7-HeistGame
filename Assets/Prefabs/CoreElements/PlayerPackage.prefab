@@ -223,7 +223,7 @@ MonoBehaviour:
   shootRef: {fileID: 3144960838337769408}
   mask:
     serializedVersion: 2
-    m_Bits: 88
+    m_Bits: 344
 --- !u!1 &750210561984739440
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,13 +466,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba94630593d10834ca60f33a4ee3c28e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  weapons:
-  - {fileID: 3141314908302840640, guid: 4fa326e6eda9e964682793927d832832, type: 3}
-  - {fileID: 3082883891508005816, guid: ff05ed73cfb484c48a9e6965dc658257, type: 3}
-  currentWeapon: 0
+  invCon: {fileID: 6610187144554731552}
+  currentWeaponInstance:
+    itemData: {fileID: 0}
+    gunData: {fileID: 0}
+    isGunType: 0
+    ammoCount: 0
   rb: {fileID: 0}
   rotVector: {fileID: 8097521380508463551}
   handVector: {fileID: 1954028009031452016}
+  targetRotation: {x: 0, y: 0, z: 0, w: 0}
+  modelRotSpeed: 200
+  maxRelativeRotAngle: 10
   aim: {fileID: 2702328071808551807}
   handRotSpeed: 5
   lookSpeed: 0.1
@@ -495,6 +500,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryController
   inv: {fileID: 11400000, guid: a49bcfe6583c66c41b5c1cb4af40f427, type: 2}
+  currentlyEquipedItem: 0
 --- !u!114 &5590331578867182955
 MonoBehaviour:
   m_ObjectHideFlags: 0

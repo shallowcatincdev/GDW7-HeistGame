@@ -200,7 +200,7 @@ public class PlayerController : MonoBehaviour
         }
 
         float step = modelRotSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, step);
+        transform.rotation = targetRotation;
 
 
         controller.Move((horizontal + Vector3.up * moveAmount.y) * Time.deltaTime);

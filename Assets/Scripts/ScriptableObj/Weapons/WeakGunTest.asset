@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2722dc4b1c743074cb1f7788ac46d77f, type: 3}
   m_Name: WeakGunTest
   m_EditorClassIdentifier: Assembly-CSharp::GunData
-  prefab: {fileID: 0}
+  prefab: {fileID: 5951056034836991889, guid: 15050de49afbdc34c85640fa2460a991, type: 3}
   inventoryIcon: {fileID: 0}
   uiName: WeakGun
   stackSize: 1

@@ -45,6 +45,7 @@ public class Interactable : MonoBehaviour
         if (promptRef != null && active)
         {
             activate.Invoke();
+            RemovePrompt();
         }
     }
 

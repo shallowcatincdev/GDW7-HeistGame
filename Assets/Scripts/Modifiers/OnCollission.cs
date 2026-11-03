@@ -8,8 +8,11 @@ public class OnCollision : MonoBehaviour
     public UnityEvent<ItemData, Collision> onCollission;
     public ItemData data;
 
+
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collision");
+
         if (collision != null)
         {
             onCollission.Invoke(data, collision);
@@ -17,5 +20,7 @@ public class OnCollision : MonoBehaviour
 
         
     }
+
+   
 
 }

@@ -13,6 +13,7 @@ public class EnemyView : MonoBehaviour
     private RaycastHit hit;
 
     private Enemy enemy;
+    public EnemyController enemyController;
 
     private enum alertlevel {Level1, Level2, Level3 };
 
@@ -26,10 +27,17 @@ public class EnemyView : MonoBehaviour
         enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        //enemyController = GameObject.Find("Enemy Controller");
+        enemyController = FindAnyObjectByType<EnemyController>();
+
     }
 
     void Update()
     {
+        if (player.detectionRate < 0)
+        {
+            player.detectionRate = 0;
+        }
         AlertLevel1();
         AlertLevel2();
         AlertLevel3();
@@ -63,7 +71,7 @@ public class EnemyView : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             isDetected = false;
             StopCoroutine(IncreaseDetectionRating());
@@ -123,7 +131,7 @@ public class EnemyView : MonoBehaviour
             }
 
         }
-
+        
     }
 
     IEnumerator Investigate(float time)
@@ -143,66 +151,30 @@ public class EnemyView : MonoBehaviour
     
     private void AlertLevel1()
     {
-        //if the player is seen with a detection rating of higher than 70, alert is started and get nearby enemies to the player's current position (heist goes loud)
-        if (player.detectionRate is >= 30 and < 60 || enemy.loud || isDetected)
+        if (player.detectionRate is >= 30 and < 60 && isDetected)
         {
-            GameObject[] nearByEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (var obj in nearByEnemies)
-            {
-                if (Vector3.Distance(enemy.transform.position, obj.transform.position) < 10f)
-                {
-                    for (int i = 0; i < nearByEnemies.Length; i++)
-                    {
-                        Debug.Log(nearByEnemies[i] + " has detected the player");
-                        
-                        nearByEnemies[i].GetComponent<Enemy>().agent.SetDestination(player.transform.position);
-                        nearByEnemies[i].GetComponent<Enemy>().hasDestination = true;
-                        nearByEnemies[i].GetComponent<Enemy>().GoToPlayer();
-                        
-                        //nearByEnemies[i].GetComponent<Enemy>().loud = true;
-                        if (player.detectionRate <= 10)
-                        {
-                            nearByEnemies[i].GetComponent<Enemy>().hasDestination = false;
-                        }
-                    }
-                }
-            }
+            enemyController.NearEnemies(100f);
+
         }
         
     }
     private void AlertLevel2()
     {
-        //if the player is seen with a detection rating of higher than 70, alert is started and get nearby enemies to the player's current position (heist goes loud)
-        if (player.detectionRate is > 60 and < 80 || enemy.loud || isDetected)
+        if (player.detectionRate is > 60 and < 80 && isDetected)
         {
-            GameObject[] nearByEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (var obj in nearByEnemies)
-            {
-                if (Vector3.Distance(enemy.transform.position, obj.transform.position) < 25f)
-                {
-                    for (int i = 0; i < nearByEnemies.Length; i++)
-                    {
-                        Debug.Log(nearByEnemies[i] + " is detected");
-                        
-                        nearByEnemies[i].GetComponent<Enemy>().agent.SetDestination(player.transform.position);
-                        nearByEnemies[i].GetComponent<Enemy>().hasDestination = true;
-                        nearByEnemies[i].GetComponent<Enemy>().GoToPlayer();
-                        //nearByEnemies[i].GetComponent<Enemy>().loud = true;
-                        if (player.detectionRate <= 30)
-                        {
-                            nearByEnemies[i].GetComponent<Enemy>().hasDestination = false;
-                        }
-                    }
-                    
-                }
-            }
+            enemyController.NearEnemies(25f);
         }
     }
     private void AlertLevel3()
     {
-        //if the player is seen with a detection rating of higher than 70, alert is started and get nearby enemies to the player's current position (heist goes loud)
-        if (player.detectionRate > 80|| enemy.loud)
+        if (player.detectionRate > 80 || enemy.loud)
         {
+            enemyController.NearEnemies(3000f);
+        }
+
+
+        /*if the player is seen with a detection rating of higher than 80, alert3 is started and get all enemies to the player's current position (heist goes loud)
+
             GameObject[] nearByEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (var obj in nearByEnemies)
             {
@@ -211,7 +183,7 @@ public class EnemyView : MonoBehaviour
                     for (int i = 0; i < nearByEnemies.Length; i++)
                     {
                         Debug.Log(nearByEnemies[i] + " is detected");
-                        
+
                         nearByEnemies[i].GetComponent<Enemy>().agent.SetDestination(player.transform.position);
                         nearByEnemies[i].GetComponent<Enemy>().hasDestination = true;
                         nearByEnemies[i].GetComponent<Enemy>().loud = true;
@@ -220,6 +192,7 @@ public class EnemyView : MonoBehaviour
                 }
             }
         }
+        */
     }
     
 }

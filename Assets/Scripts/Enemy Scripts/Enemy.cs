@@ -5,7 +5,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     
-    //Code to wander from:
+    //Wander Script from:
     //https://discussions.unity.com/t/solved-random-wander-ai-using-navmesh/581895/2 
 
     private PlayerController player;

@@ -9,9 +9,10 @@ public class EnemyController : MonoBehaviour
 
     public GameObject enemyPrefab;
     public GameObject[] enemies;
-    public GameObject[] spawnPoints;
+    private GameObject[] spawnPoints;
 
     private Enemy enemyScript;
+    private EnemyView enemyView;
     private PlayerController player;
     
     
@@ -20,6 +21,7 @@ public class EnemyController : MonoBehaviour
         spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawn");
         enemyScript = GetComponent<Enemy>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        
         
         StartCoroutine(SpawnEnemies());
         
@@ -35,7 +37,7 @@ public class EnemyController : MonoBehaviour
     {
         foreach (var obj in enemies)
         {
-            if (Vector3.Distance(enemyScript.transform.position, obj.transform.position) < distance)
+            if (Vector3.Distance(enemyScript.transform.position, obj.transform.position) <= distance)
             {
                 //enemyScript.GoToPlayer();
                 //for (int i = 0; i < enemyController.enemies.Length; i++)
@@ -59,7 +61,7 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator SpawnEnemies()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.1f);
         
         foreach (var t in spawnPoints)
         {
@@ -68,5 +70,28 @@ public class EnemyController : MonoBehaviour
         }
         enemies = GameObject.FindGameObjectsWithTag("Enemy");
         //gets the enemies and puts them into the array
+    }
+    private void AlertLevel1()
+    {
+        if (player.detectionRate is >= 30 and < 60)
+        {
+            NearEnemies(100f);
+        }
+        
+    }
+    private void AlertLevel2()
+    {
+        if (player.detectionRate is >= 60 and < 80)
+        {
+            NearEnemies(25f);
+        }
+    }
+
+    private void AlertLevel3()
+    {
+        if (player.detectionRate >= 80)
+        {
+            NearEnemies(1000f);
+        }
     }
 }

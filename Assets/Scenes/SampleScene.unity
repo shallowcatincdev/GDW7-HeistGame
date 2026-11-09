@@ -119,11 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &230869708 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2164594220099284433, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-  m_PrefabInstance: {fileID: 8582687538457223792}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &266913282
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,18 +1066,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
   enemyPrefab: {fileID: 2164594220099284433, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
-  enemies:
-  - {fileID: 230869708}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  enemies: []
   spawnPoints: []
+  enemyView: {fileID: 1491898544}
 --- !u!1 &994657444
 GameObject:
   m_ObjectHideFlags: 0
@@ -1561,6 +1547,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489040794}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1491898544 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5339241974597879431, guid: 0aa96f15e7519464b9176761a80f1fb3, type: 3}
+  m_PrefabInstance: {fileID: 8582687538457223792}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f9b150f8f95704c9c5be92bb2fd263, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyView
 --- !u!1 &1553511389
 GameObject:
   m_ObjectHideFlags: 0

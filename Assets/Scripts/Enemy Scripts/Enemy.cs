@@ -5,10 +5,11 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     
-    //Code to wander from:
+    //Wander Script from:
     //https://discussions.unity.com/t/solved-random-wander-ai-using-navmesh/581895/2 
 
     private PlayerController player;
+    private EnemyController enemyController;
     
     public NavMeshAgent agent;
     
@@ -27,6 +28,7 @@ public class Enemy : MonoBehaviour
         agent = GetComponent<NavMeshAgent> ();
         timer = wanderTimer;
         player = GameObject.Find ("Player").GetComponent<PlayerController> ();
+        enemyController = GameObject.Find("Enemy Controller").GetComponent<EnemyController>();
     }
   
     // Update is called once per frame
@@ -38,7 +40,12 @@ public class Enemy : MonoBehaviour
             agent.SetDestination(newPos);
             timer = 0;
         }
-        
+
+        if (player.detectionRate <=10)
+        {
+            hasDestination = false;
+        }
+
     }
 
     private static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask) {
@@ -58,4 +65,5 @@ public class Enemy : MonoBehaviour
         agent.destination = player.transform.position;
     }
     
+
 }

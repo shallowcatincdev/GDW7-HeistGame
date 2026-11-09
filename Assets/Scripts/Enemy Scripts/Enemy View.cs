@@ -13,8 +13,9 @@ public class EnemyView : MonoBehaviour
     private RaycastHit hit;
 
     private Enemy enemy;
+    //public EnemyController enemyController;
 
-    private enum alertlevel {Level1, Level2, Level3 };
+    //private enum alertlevel {Level1, Level2, Level3 };
 
     //TODO: Add raycast from enemy to player's position - make sure the enemy can actually see the player
     //When investigating the player move to the raycast position
@@ -26,13 +27,22 @@ public class EnemyView : MonoBehaviour
         enemy = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Enemy>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+        //enemyController = GameObject.Find("Enemy Controller");
+        //enemyController = FindAnyObjectByType<EnemyController>();
+
     }
 
     void Update()
     {
-        AlertLevel1();
-        AlertLevel2();
-        AlertLevel3();
+        if (player.detectionRate < 0)
+        {
+            player.detectionRate = 0;
+        }
+
+        if (player.detectionRate > 100)
+        {
+            player.detectionRate = 100;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -63,7 +73,7 @@ public class EnemyView : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Player")
+        if (other.CompareTag("Player"))
         {
             isDetected = false;
             StopCoroutine(IncreaseDetectionRating());
@@ -82,7 +92,7 @@ public class EnemyView : MonoBehaviour
                 player.detectionRate += 1;
             }
 
-            if (player.isProned && player.isInBush == false)//is proned
+            if (player.isProned && player.isInBush == false)//is prone
             {
                 yield return new WaitForSeconds(2.0f);
                 player.detectionRate += 1;
@@ -123,7 +133,7 @@ public class EnemyView : MonoBehaviour
             }
 
         }
-
+        
     }
 
     IEnumerator Investigate(float time)
@@ -140,69 +150,9 @@ public class EnemyView : MonoBehaviour
             StopCoroutine(Investigate(timeBeforeAlert));
         }
     }
-    
-    private void AlertLevel1()
-    {
-        //if the player is seen with a detection rating of higher than 70, alert is started and get nearby enemies to the player's current position (heist goes loud)
-        if (player.detectionRate is >= 30 and < 60 || enemy.loud || isDetected)
-        {
-            GameObject[] nearByEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (var obj in nearByEnemies)
-            {
-                if (Vector3.Distance(enemy.transform.position, obj.transform.position) < 10f)
-                {
-                    for (int i = 0; i < nearByEnemies.Length; i++)
-                    {
-                        //Debug.Log(nearByEnemies[i] + " has detected the player");
-                        
-                        nearByEnemies[i].GetComponent<Enemy>().agent.SetDestination(player.transform.position);
-                        nearByEnemies[i].GetComponent<Enemy>().hasDestination = true;
-                        nearByEnemies[i].GetComponent<Enemy>().GoToPlayer();
-                        
-                        //nearByEnemies[i].GetComponent<Enemy>().loud = true;
-                        if (player.detectionRate <= 10)
-                        {
-                            nearByEnemies[i].GetComponent<Enemy>().hasDestination = false;
-                        }
-                    }
-                }
-            }
-        }
         
-    }
-    private void AlertLevel2()
-    {
-        //if the player is seen with a detection rating of higher than 70, alert is started and get nearby enemies to the player's current position (heist goes loud)
-        if (player.detectionRate is > 60 and < 80 || enemy.loud || isDetected)
-        {
-            GameObject[] nearByEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-            foreach (var obj in nearByEnemies)
-            {
-                if (Vector3.Distance(enemy.transform.position, obj.transform.position) < 25f)
-                {
-                    for (int i = 0; i < nearByEnemies.Length; i++)
-                    {
-                        //Debug.Log(nearByEnemies[i] + " is detected");
-                        
-                        nearByEnemies[i].GetComponent<Enemy>().agent.SetDestination(player.transform.position);
-                        nearByEnemies[i].GetComponent<Enemy>().hasDestination = true;
-                        nearByEnemies[i].GetComponent<Enemy>().GoToPlayer();
-                        //nearByEnemies[i].GetComponent<Enemy>().loud = true;
-                        if (player.detectionRate <= 30)
-                        {
-                            nearByEnemies[i].GetComponent<Enemy>().hasDestination = false;
-                        }
-                    }
-                    
-                }
-            }
-        }
-    }
-    private void AlertLevel3()
-    {
-        //if the player is seen with a detection rating of higher than 70, alert is started and get nearby enemies to the player's current position (heist goes loud)
-        if (player.detectionRate > 80|| enemy.loud)
-        {
+        /*if the player is seen with a detection rating of higher than 80, alert3 is started and get all enemies to the player's current position (heist goes loud)
+
             GameObject[] nearByEnemies = GameObject.FindGameObjectsWithTag("Enemy");
             foreach (var obj in nearByEnemies)
             {
@@ -210,8 +160,9 @@ public class EnemyView : MonoBehaviour
                 {
                     for (int i = 0; i < nearByEnemies.Length; i++)
                     {
-                        //Debug.Log(nearByEnemies[i] + " is detected");
                         
+                        Debug.Log(nearByEnemies[i] + " is detected");
+
                         nearByEnemies[i].GetComponent<Enemy>().agent.SetDestination(player.transform.position);
                         nearByEnemies[i].GetComponent<Enemy>().hasDestination = true;
                         nearByEnemies[i].GetComponent<Enemy>().loud = true;
@@ -220,6 +171,5 @@ public class EnemyView : MonoBehaviour
                 }
             }
         }
-    }
-    
+        */
 }

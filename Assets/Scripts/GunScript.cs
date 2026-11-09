@@ -12,6 +12,8 @@ public class GunScript : WeaponScript
     public Projectile projectileScript;
     public GameObject shootPoint;
 
+  
+
     public override void PrimaryAction()
     {
         if (itemInstance.ammoCount > 0)

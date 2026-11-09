@@ -1,22 +1,23 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.Assemblies;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
-    // TEMP
-
-    public WeaponScript[] weapons;
-    public int currentWeapon;
-
-    GameObject currentHeldWeapon;
-
-    // TEMP
+    public InventoryController invCon;
+    public ItemInstance currentWeaponInstance;
+    
+    GameObject currentHeldWeapon = null;
 
 
     public Rigidbody rb;
     public Transform rotVector;
     public Transform handVector;
     private Marking mark;
+
+    public Quaternion targetRotation;
+    public float modelRotSpeed = 5000;
+    public float maxRelativeRotAngle;
 
     public AimPos aim;
     public float handRotSpeed = 5f;
@@ -42,76 +43,52 @@ public class PlayerController : MonoBehaviour
     
     public CharacterController controller;
 
-    public void OnMove(InputAction.CallbackContext context)
+    public void OnMove(InputValue value)
     {
-        // reads the move amount, rest of code is in Update
-        moveAmount = context.ReadValue<Vector2>();
-        //Debug.Log($"Move input: {moveAmount}");
-
+        moveAmount = value.Get<Vector2>();
     }
-    public void OnLook(InputAction.CallbackContext context)
-    {
-        //reads the look value and sets the mouse to be invisible and at the centre of the screen
-        lookAmount = context.ReadValue<Vector2>();
 
-        Cursor.lockState = CursorLockMode.Locked;
+    public void OnLook(InputValue value)
+    {
+        lookAmount = value.Get<Vector2>();
+        Cursor.lockState = CursorLockMode.Locked; // TODO cursor stuff should be moved
         Cursor.visible = false;
     }
 
-    public void OnAttack(InputAction.CallbackContext context)
+    public void OnAttack(InputValue value)
     {
-        //where the player will be able to shoot -- MarkEnemy is here for testing
-        if (context.performed)
+        if(currentWeaponInstance != null)
         {
-            
+            currentHeldWeapon.GetComponent<WeaponScript>().PrimaryAction();
+        }
+        
 
-            // TODO in future this will interact with the inventory to find out the currently equipped item but for now will be hard coded.
-            weapons[currentWeapon].PrimaryAction();
+    }
 
+    public void OnReload(InputValue value)
+    {
+        if (currentWeaponInstance.isGunType && currentWeaponInstance != null)
+        {
+            currentHeldWeapon.GetComponent<GunScript>().ReloadGun();
         }
     }
 
-    public void OnReload(InputAction.CallbackContext context)
+    public void OnMark(InputValue value)
     {
-        if (weapons[currentWeapon].itemInstance.isGunType)
-        {
-            weapons[currentWeapon].GetComponent<GunScript>().ReloadGun();
-        }
+        //mark.MarkEnemy();
     }
 
-    public void OnMark(InputAction.CallbackContext context)
-    {
-
-        Debug.Log("M");
-        if (context.performed)
-        {
-            Debug.Log("Mark");
-            mark.MarkEnemy();
-        }
-    }
-
-    public void OnInteract(InputAction.CallbackContext context)
-    {
-        //where most interactions should appear
-        if (context.performed)
-        {
-            
-            Debug.Log("interacted With The Object, if there is one");
-        }
-    }
-
-    public void OnCrouch(InputAction.CallbackContext context)
+    public void OnCrouch(InputValue value)
     {
         //set player speed to be slower, and prevent jumping
-        if (context.performed && controller.isGrounded && isSprinting == false)
+        if (value.Get<float>() > 0.5f && controller.isGrounded && isSprinting == false)
         {
-            //Debug.Log($"Crouching with {context.action}");
             isCrouched = true;
             moveSpeed = 2.5f;
             jumpForce = 0f;
         }
 
-        if (context.canceled && isSprinting == false)
+        if (value.Get<float>() <= 0.5f && isSprinting == false)
         {
             isCrouched = false;
             moveSpeed = 5f;
@@ -119,83 +96,71 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnJump(InputValue value)
     {
-        //if player is on the ground, jump -- rest of code is in Update
-        //Debug.Log($"Jumping: {context.performed} - Is Grounded: {controller.isGrounded}");
-        if (context.performed && controller.isGrounded)
+        if (controller.isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
         }
     }
 
-    public void OnSprint(InputAction.CallbackContext context)
+    public void OnSprint(InputValue value)
     {
-        //player moves faster if they're not crouched or proned
-        if (context.performed && controller.isGrounded && isCrouched == false && isProned == false)
+        if (value.Get<float>() > 0.5f && controller.isGrounded && isCrouched == false && isProned == false)
         {
             isSprinting = true;
             moveSpeed = 10f;
         }
 
-        if (context.canceled && isCrouched == false && isProned == false)
+        if (value.Get<float>() <= 0.5f && isCrouched == false && isProned == false)
         {
             isSprinting = false;
             moveSpeed = 5f;
         }
     }
 
-    public void OnProne(InputAction.CallbackContext context)
+    public void OnInteract()
     {
-        //make player prone if they're not sprinting and they're on the ground
-        if (context.performed && controller.isGrounded && isSprinting == false)
-        {
-            isProned = true;
-            moveSpeed = 1f;
-            jumpForce = 0f;
-        }
 
-        if (context.canceled&& isSprinting == false)
+        if (aim.lookRef != null)
         {
-            isProned = false;
-            moveSpeed = 5f;
-            jumpForce = 1.5f;
+            aim.lookRef.Activate();
         }
+        
     }
+
 
     public void OnNext()
     {
-        if (weapons.Length == currentWeapon)
+        ItemInstance equipNew = invCon.NextEquip();
+        if( equipNew == null )
         {
-            currentWeapon = 0;
+            Debug.Log("Null Weapon");
+        }
+        else if( equipNew == currentWeaponInstance)
+        {
+            Debug.Log("Same Weapon");
         }
         else
         {
-            currentWeapon++;
+            Debug.Log("NEW Weapon");
+            Debug.Log(equipNew.itemData.uiName);
+            newWeapon(equipNew);
         }
-        newWeapon();
     }
 
     public void OnPrevious()
     {
-        if (0 == currentWeapon)
-        {
-            currentWeapon = weapons.Length;
-        }
-        else
-        {
-            currentWeapon--;
-        }
-
-        newWeapon();
+        invCon.PrevEquip();
     }
 
-    void newWeapon()
+    void newWeapon(ItemInstance equipNew)
     {
         Destroy(currentHeldWeapon);
         currentHeldWeapon = null;
-
-        currentHeldWeapon = Instantiate<GameObject>(weapons[currentWeapon].itemInstance.itemData.prefab, handVector.transform);
+        currentHeldWeapon = Instantiate<GameObject>(equipNew.itemData.prefab, handVector);
+        currentHeldWeapon.GetComponent<ItemScript>().Init(equipNew);
+        currentWeaponInstance = equipNew;
     }
 
     public void Start()
@@ -223,8 +188,19 @@ public class PlayerController : MonoBehaviour
 
         if (horizontal != Vector3.zero) // if moving update player rotation
         {
-            transform.rotation = Quaternion.Euler(0f, lookVert, 0f); // TODO: Smooth rotation for player model
+            targetRotation = Quaternion.Euler(0f, lookVert, 0f); // TODO: Smooth rotation for player model
         }
+        else if (rotVector.rotation.eulerAngles.y - transform.rotation.eulerAngles.y > maxRelativeRotAngle)
+        {
+            targetRotation = Quaternion.Euler(0, lookVert - maxRelativeRotAngle, 0);
+        }
+        else if (rotVector.rotation.eulerAngles.y - transform.rotation.eulerAngles.y < maxRelativeRotAngle * -1)
+        {
+            targetRotation = Quaternion.Euler(0, lookVert + maxRelativeRotAngle, 0);
+        }
+
+        float step = modelRotSpeed * Time.deltaTime;
+        transform.rotation = targetRotation;
 
 
         controller.Move((horizontal + Vector3.up * moveAmount.y) * Time.deltaTime);
@@ -234,5 +210,9 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
     }
+
+
+    
+
 
 }

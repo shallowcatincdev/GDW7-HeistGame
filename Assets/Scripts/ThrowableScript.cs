@@ -8,6 +8,8 @@ public class ThrowableScript : WeaponScript
     /// all additional modification should be done through additional scripts through script composition
     ///
 
+
+
     public ThrowableData data;
     public Projectile projectileScript;
     public GameObject throwPoint;

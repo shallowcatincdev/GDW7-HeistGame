@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -8,7 +10,7 @@ public class EnemyController : MonoBehaviour
     //TODO: call array position for enemies to go to player, 
 
     public GameObject enemyPrefab;
-    public GameObject[] enemies;
+    public List<Enemy> enemies = new List<Enemy>();
     private GameObject[] spawnPoints;
 
     private Enemy enemyScript;
@@ -35,23 +37,23 @@ public class EnemyController : MonoBehaviour
 
     public void NearEnemies(float distance) //distance to other enemies
     {
-        foreach (var obj in enemies)
+        foreach (Enemy obj in enemies)
         {
-            if (Vector3.Distance(enemyScript.transform.position, obj.transform.position) <= distance)
+            if (Vector3.Distance(player.transform.position, obj.transform.position) <= distance)
             {
-                //enemyScript.GoToPlayer();
+                //obj.GoToPlayer();
                 //for (int i = 0; i < enemyController.enemies.Length; i++)
-                
+
                 Debug.Log(enemies + " has detected the player");
 
-                enemyScript.agent.SetDestination(player.transform.position);
-                enemyScript.hasDestination = true;
-                enemyScript.GoToPlayer();
-                    //enemyScript.loud = true;
-                    
+                obj.agent.SetDestination(player.transform.position);
+                obj.hasDestination = true;
+                obj.GoToPlayer();
+                //obj.loud = true;
+
                 if (player.detectionRate <= 10)
                 {
-                    enemyScript.hasDestination = false;
+                    obj.hasDestination = false;
 
                 }
                 
@@ -65,10 +67,11 @@ public class EnemyController : MonoBehaviour
         
         foreach (var t in spawnPoints)
         {
-            Instantiate(enemyPrefab, t.transform.position, Quaternion.identity);
+            GameObject temp = Instantiate(enemyPrefab, t.transform.position, Quaternion.identity);
+            enemies.Add(temp.GetComponent<Enemy>());
             //Debug.Log($"Enemy: {enemies[i].transform.position}");
         }
-        enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        //enemies = GameObject.FindGameObjectsWithTag("Enemy");
         //gets the enemies and puts them into the array
     }
     private void AlertLevel1()

@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
-        if(currentWeaponInstance != null)
+        if(currentHeldWeapon != null)
         {
             currentHeldWeapon.GetComponent<WeaponScript>().PrimaryAction();
         }

@@ -3,9 +3,11 @@ using UnityEngine.Events;
 
 public class OnTrigger : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    public UnityEvent<ItemData, Collider> onTrigger;
+    [Header("Item Data")]
+    [Tooltip("Optional feild to pass along ItemData when triggered. such as when outputing to a damage modifier")]
     public ItemData data;
+    [Header("Output Event")]
+    public UnityEvent<ItemData, Collider> onTrigger;
 
     private void OnTriggerEnter(Collider other)
     {

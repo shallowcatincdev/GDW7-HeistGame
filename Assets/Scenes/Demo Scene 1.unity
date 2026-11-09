@@ -285,15 +285,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractionTest
       objectReference: {fileID: 0}
+    - target: {fileID: 3330142503644151617, guid: a0bdb8953777d014db120e06fbef1fec, type: 3}
+      propertyPath: maxDist
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5503849513615242119, guid: a0bdb8953777d014db120e06fbef1fec, type: 3}
       propertyPath: text
       value: Makes Noise
       objectReference: {fileID: 0}
     - target: {fileID: 5503849513615242119, guid: a0bdb8953777d014db120e06fbef1fec, type: 3}
+      propertyPath: maxDist
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5503849513615242119, guid: a0bdb8953777d014db120e06fbef1fec, type: 3}
       propertyPath: removePromptWhenTriggered
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3330142503644151617, guid: a0bdb8953777d014db120e06fbef1fec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -857,6 +866,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InteractionTest (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3330142503644151617, guid: a0bdb8953777d014db120e06fbef1fec, type: 3}
+      propertyPath: maxDist
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5503849513615242119, guid: a0bdb8953777d014db120e06fbef1fec, type: 3}
       propertyPath: text
       value: Gives Gun
@@ -877,7 +890,8 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3330142503644151617, guid: a0bdb8953777d014db120e06fbef1fec, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:

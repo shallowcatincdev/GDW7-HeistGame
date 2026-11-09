@@ -11,6 +11,9 @@ public class AimPos : MonoBehaviour
     GameObject LookingAtObj;
     public ILookedAt lookRef;
 
+    float lookAtMaxDistCache;
+    bool calledLookedAt;
+
     void Update()
     {
         Vector3 origin = transform.position;
@@ -30,16 +33,36 @@ public class AimPos : MonoBehaviour
                     lookRef.StopLookedAt();
                     lookRef = null;
                     LookingAtObj = null;
+                    calledLookedAt = false;
                 }
                 
 
                 if (hit.collider.gameObject.TryGetComponent(out ILookedAt LookedAtObj))
                 {
-                    
-                    LookedAtObj.LookedAt();
+                    lookAtMaxDistCache = LookedAtObj.GetMaxDist();
+                    if (hit.distance <  lookAtMaxDistCache || lookAtMaxDistCache == 0)
+                    {
+                        LookedAtObj.LookedAt();
+                        calledLookedAt = true;
+                    }
                     lookRef = LookedAtObj;
-                    LookingAtObj = hit.collider.gameObject;
-
+                }
+                LookingAtObj = hit.collider.gameObject;
+            }
+            else
+            {
+                if(lookRef != null )
+                {
+                    if(hit.distance < lookAtMaxDistCache && !calledLookedAt)
+                    {
+                        lookRef.LookedAt();
+                        calledLookedAt = true;
+                    }
+                    else if (hit.distance >= lookAtMaxDistCache && lookAtMaxDistCache != 0 && calledLookedAt)
+                    {
+                        lookRef.StopLookedAt();
+                        calledLookedAt = false;
+                    }
                 }
             }
             
@@ -52,6 +75,7 @@ public class AimPos : MonoBehaviour
                 lookRef.StopLookedAt();
                 lookRef = null;
                 LookingAtObj = null;
+                calledLookedAt = false;
             }
 
             aimPoint = shootRef.position;

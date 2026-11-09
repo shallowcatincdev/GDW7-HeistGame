@@ -1,20 +1,30 @@
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent (typeof(InstantiateObj))]
-public class Interactable : MonoBehaviour
+public class Interactable : MonoBehaviour, ILookedAt
 {
-    InstantiateObj instObj;
-
+    [Header("Obj Refrences")]
+    [Tooltip("Refrence to the prompt prefab.")]
     public GameObject prompt;
     GameObject promptRef;
+    InstantiateObj instObj;
 
-    public UnityEvent activate;
-
+    [Header("Settings")]
+    [Tooltip("Text to display in prompt")]
     public string text;
-    bool active;
+    [Tooltip("Max distance for the prompt to appear. (note distance from camera not player)")]
+    public float maxDist;
+    [Tooltip("If enabled prompt gets removed when used. Disable for actions that are inteanded to be called multiple times.")]
     public bool removePromptWhenTriggered = true;
 
+    [Header("Output Event")]
+    [Tooltip("Event will be called when interacted with.")]
+    public UnityEvent activate;
+    bool active;
+
+    
 
     private void Start()
     {
@@ -56,6 +66,19 @@ public class Interactable : MonoBehaviour
     }
 
 
+    public float GetMaxDist()
+    {
+        return maxDist;
+    }
 
+    public void LookedAt()
+    {
+        SpawnPrompt();
+    }
+
+    public void StopLookedAt()
+    {
+        RemovePrompt();
+    }
 
 }

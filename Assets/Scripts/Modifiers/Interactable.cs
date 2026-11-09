@@ -13,6 +13,7 @@ public class Interactable : MonoBehaviour
 
     public string text;
     bool active;
+    public bool removePromptWhenTriggered = true;
 
 
     private void Start()
@@ -45,7 +46,12 @@ public class Interactable : MonoBehaviour
         if (promptRef != null && active)
         {
             activate.Invoke();
-            RemovePrompt();
+
+            if (removePromptWhenTriggered)
+            {
+                RemovePrompt();
+            }
+            
         }
     }
 

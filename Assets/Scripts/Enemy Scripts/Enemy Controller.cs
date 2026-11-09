@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
                 //obj.GoToPlayer();
                 //for (int i = 0; i < enemyController.enemies.Length; i++)
 
-                Debug.Log(enemies + " has detected the player");
+                //Debug.Log(enemies + " has detected the player");
 
                 obj.agent.SetDestination(player.transform.position);
                 obj.hasDestination = true;

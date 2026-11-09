@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        AlertLevel1();
     }
 
     public void NearEnemies(float distance) //distance to other enemies
@@ -41,20 +41,20 @@ public class EnemyController : MonoBehaviour
             {
                 //enemyScript.GoToPlayer();
                 //for (int i = 0; i < enemyController.enemies.Length; i++)
-                {
-                    Debug.Log(enemies + " has detected the player");
+                
+                Debug.Log(enemies + " has detected the player");
 
-                    enemyScript.agent.SetDestination(player.transform.position);
-                    enemyScript.hasDestination = true;
-                    enemyScript.GoToPlayer();
+                enemyScript.agent.SetDestination(player.transform.position);
+                enemyScript.hasDestination = true;
+                enemyScript.GoToPlayer();
                     //enemyScript.loud = true;
                     
-                    if (player.detectionRate <= 10)
-                    {
-                        enemyScript.hasDestination = false;
+                if (player.detectionRate <= 10)
+                {
+                    enemyScript.hasDestination = false;
 
-                    }
                 }
+                
             }
         }
     }

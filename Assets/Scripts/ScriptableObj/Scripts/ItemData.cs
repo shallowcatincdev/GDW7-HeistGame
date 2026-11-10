@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class ItemData : ScriptableObject
 {
     public GameObject prefab;
-    public Image inventoryIcon;
+    public Texture2D inventoryIcon;
     public string uiName;
     public int stackSize;
 

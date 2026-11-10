@@ -10,7 +10,7 @@ public class Marking : MonoBehaviour
     public Material markedMaterial;
     
     
-    private bool canMark = false;
+    //private bool canMark = false;
     private bool isMarked = false;
 
     private float range = 100f;

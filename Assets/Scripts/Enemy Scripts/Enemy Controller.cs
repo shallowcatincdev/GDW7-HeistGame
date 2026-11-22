@@ -13,17 +13,13 @@ public class EnemyController : MonoBehaviour
     public List<Enemy> enemies = new List<Enemy>();
     private GameObject[] spawnPoints;
 
-    private Enemy enemyScript;
-    private EnemyView enemyView;
     private PlayerController player;
     
     
     void Start()
     {
         spawnPoints = GameObject.FindGameObjectsWithTag("EnemySpawn");
-        enemyScript = GetComponent<Enemy>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        
         
         StartCoroutine(SpawnEnemies());
         
@@ -73,10 +69,7 @@ public class EnemyController : MonoBehaviour
         {
             GameObject temp = Instantiate(enemyPrefab, t.transform.position, Quaternion.identity);
             enemies.Add(temp.GetComponent<Enemy>());
-            //Debug.Log($"Enemy: {enemies[i].transform.position}");
         }
-        //enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        //gets the enemies and puts them into the array
     }
     private void AlertLevel1()
     {

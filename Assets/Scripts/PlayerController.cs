@@ -40,9 +40,11 @@ public class PlayerController : MonoBehaviour
 
     public int detectionRate = 0;
     public bool isInBush = false;
-    
+    private bool isClimbing = false;
     public CharacterController controller;
-
+    
+    
+    
     public void OnMove(InputValue value)
     {
         moveAmount = value.Get<Vector2>();
@@ -102,6 +104,14 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpForce * -2f * gravity);
         }
+
+
+        if (isClimbing)
+        {
+            MovementHandler(); 
+            isClimbing = false;
+        }
+
     }
 
     public void OnSprint(InputValue value)
@@ -182,36 +192,72 @@ public class PlayerController : MonoBehaviour
 
 
 
-        // Movement
-        Vector3 horizontal = (transform.right * moveAmount.x + transform.forward * moveAmount.y)* moveSpeed;
-
-
-        if (horizontal != Vector3.zero) // if moving update player rotation
-        {
-            targetRotation = Quaternion.Euler(0f, lookVert, 0f); // TODO: Smooth rotation for player model
-        }
-        else if (rotVector.rotation.eulerAngles.y - transform.rotation.eulerAngles.y > maxRelativeRotAngle)
-        {
-            targetRotation = Quaternion.Euler(0, lookVert - maxRelativeRotAngle, 0);
-        }
-        else if (rotVector.rotation.eulerAngles.y - transform.rotation.eulerAngles.y < maxRelativeRotAngle * -1)
-        {
-            targetRotation = Quaternion.Euler(0, lookVert + maxRelativeRotAngle, 0);
-        }
-
-        float step = modelRotSpeed * Time.deltaTime;
-        transform.rotation = targetRotation;
-
-
-        controller.Move((horizontal + Vector3.up * moveAmount.y) * Time.deltaTime);
-        
-                
+       
         // Jump
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
+        
+        
+        //Climbing
+        if (isClimbing)
+        {
+            ClimbingHandler();
+        }
+        else
+        {
+            MovementHandler();
+        }
+
     }
+        void MovementHandler()
+        {
+            // Movement
+            Vector3 horizontal = (transform.right * moveAmount.x + transform.forward * moveAmount.y)* moveSpeed;
 
 
+            if (horizontal != Vector3.zero) // if moving update player rotation
+            {
+                targetRotation = Quaternion.Euler(0f, lookVert, 0f); // TODO: Smooth rotation for player model
+            }
+            else if (rotVector.rotation.eulerAngles.y - transform.rotation.eulerAngles.y > maxRelativeRotAngle)
+            {
+                targetRotation = Quaternion.Euler(0, lookVert - maxRelativeRotAngle, 0);
+            }
+            else if (rotVector.rotation.eulerAngles.y - transform.rotation.eulerAngles.y < maxRelativeRotAngle * -1)
+            {
+                targetRotation = Quaternion.Euler(0, lookVert + maxRelativeRotAngle, 0);
+            }
+
+            float step = modelRotSpeed * Time.deltaTime;
+            transform.rotation = targetRotation;
+
+
+            controller.Move((horizontal + Vector3.up * moveAmount.y) * Time.deltaTime);
+        }
+
+        void ClimbingHandler()
+        {
+            float climbSpeed = 3.5f;
+            velocity.y = 0f;
+            Vector3 climbDirection = new Vector3(0f, moveAmount.y, 0f);
+            controller.Move(climbDirection * climbSpeed * Time.deltaTime);
+        }
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.CompareTag("Ladder"))
+            {
+                isClimbing = true;
+                velocity = Vector3.zero;
+            }
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.CompareTag("Ladder"))
+            {
+                isClimbing = false;
+            }
+        }
     
 
 

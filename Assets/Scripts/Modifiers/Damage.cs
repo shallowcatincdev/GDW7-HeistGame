@@ -15,6 +15,14 @@ public class Damage : MonoBehaviour
 
     }
 
+    public void DoDamage(ItemData data, Collider cod)
+    {
+        GameObject obj = cod.gameObject;
+
+        DamageObj(obj, data);
+
+    }
+
 
     void DamageObj(GameObject obj, ItemData data) 
     {

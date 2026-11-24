@@ -4,36 +4,41 @@ using UnityEngine.Assemblies;
 using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
-    public InventoryController invCon;
-    public ItemInstance currentWeaponInstance;
-    
-    GameObject currentHeldWeapon = null;
-
-
-    public Rigidbody rb;
+    [Header("Obj Refrences")]
     public Transform rotVector;
     public Transform handVector;
-    private Marking mark;
-
-    public Quaternion targetRotation;
-    public float modelRotSpeed = 5000;
-    public float maxRelativeRotAngle;
-
+    [Tooltip("Refrence to the AimPos Script on the main camera.")]
     public AimPos aim;
-    public float handRotSpeed = 5f;
     
-    private float moveSpeed = 5f;
-    private float jumpForce = 1.5f;
-    private float gravity = -9.8f;
+
+    [Header("Player Settings")]
+    public float moveSpeed = 5f;
+    public float jumpForce = 1.5f;
+    public float gravity = -9.8f;
     public float lookSpeed = 1f;
-    private float lookVert;
-    private float lookHorz;
+    [Tooltip("The max angle between camera and player model.")]
+    public float maxRelativeRotAngle;
     
-    
+
+
+    [Header("Player Flags")]
     public bool isCrouched = false;
     public bool isProned = false;
     public bool isSprinting = false;
-    
+    public bool isInBush = false;
+    public int detectionRate = 0;
+
+    [Header("Inventory")]
+    public InventoryController invCon;
+    public ItemInstance currentWeaponInstance;
+    GameObject currentHeldWeapon = null;
+
+    // Private Variables
+
+    // Rotation and Movement
+    private float lookH;
+    private float lookV;
+    Quaternion targetRotation;
     Vector2 moveAmount;
     Vector2 lookAmount;
     Vector2 velocity;
@@ -41,10 +46,19 @@ public class PlayerController : MonoBehaviour
     public int detectionRate = 0;
     public bool isInBush = false;
     private bool isClimbing = false;
-    public CharacterController controller;
+
     
     
     
+    // Character Controller
+    CharacterController controller;
+
+    public void Start()
+    {
+        controller = GetComponent<CharacterController>();
+    }
+
+
     public void OnMove(InputValue value)
     {
         moveAmount = value.Get<Vector2>();
@@ -59,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnAttack(InputValue value)
     {
-        if(currentWeaponInstance != null)
+        if(currentHeldWeapon != null)
         {
             currentHeldWeapon.GetComponent<WeaponScript>().PrimaryAction();
         }
@@ -161,7 +175,21 @@ public class PlayerController : MonoBehaviour
 
     public void OnPrevious()
     {
-        invCon.PrevEquip();
+        ItemInstance equipNew = invCon.PrevEquip();
+        if (equipNew == null)
+        {
+            Debug.Log("Null Weapon");
+        }
+        else if (equipNew == currentWeaponInstance)
+        {
+            Debug.Log("Same Weapon");
+        }
+        else
+        {
+            Debug.Log("NEW Weapon");
+            Debug.Log(equipNew.itemData.uiName);
+            newWeapon(equipNew);
+        }
     }
 
     void newWeapon(ItemInstance equipNew)
@@ -173,47 +201,40 @@ public class PlayerController : MonoBehaviour
         currentWeaponInstance = equipNew;
     }
 
-    public void Start()
-    {
-        controller = GetComponent<CharacterController>();
-        mark = GetComponent<Marking>();
-        rb = GetComponent<Rigidbody>();
-    }
+    
     public void Update()
     {
         // Camera
-        lookVert += lookAmount.x * lookSpeed;
-        lookHorz -= lookAmount.y * lookSpeed;
-        lookHorz = Mathf.Clamp(lookHorz, -70f, 70f);
-        rotVector.rotation = Quaternion.Euler(lookHorz, lookVert, 0f);
+        lookH += lookAmount.x * lookSpeed;
+        lookV -= lookAmount.y * lookSpeed;
+        lookV = Mathf.Clamp(lookV, -70f, 70f);
+        rotVector.rotation = Quaternion.Euler(lookV, lookH, 0f);
 
         // Hand Rotation
         handVector.LookAt(aim.aimPoint);
 
 
 
-       
-        // Jump
-        velocity.y += gravity * Time.deltaTime;
-        controller.Move(velocity * Time.deltaTime);
-        
-        
-        //Climbing
-        if (isClimbing)
+        // Movement
+        Vector3 horizontal = (transform.right * moveAmount.x + transform.forward * moveAmount.y)* moveSpeed;
+
+
+        float relativeAngle = Mathf.DeltaAngle(transform.rotation.eulerAngles.y, rotVector.rotation.eulerAngles.y);
+
+        if (horizontal != Vector3.zero) // if moving update player rotation
         {
-            ClimbingHandler();
+            targetRotation = Quaternion.Euler(0f, lookH, 0f); // TODO: Smooth rotation for player model
         }
-        else
+        else if (relativeAngle > maxRelativeRotAngle)
         {
-            MovementHandler();
+            targetRotation = Quaternion.Euler(0, lookH - maxRelativeRotAngle, 0);
+        }
+        else if (relativeAngle < maxRelativeRotAngle * -1)
+        {
+            targetRotation = Quaternion.Euler(0, lookH + maxRelativeRotAngle, 0);
         }
 
-    }
-        void MovementHandler()
-        {
-            // Movement
-            Vector3 horizontal = (transform.right * moveAmount.x + transform.forward * moveAmount.y)* moveSpeed;
-
+        transform.rotation = targetRotation;
 
             if (horizontal != Vector3.zero) // if moving update player rotation
             {

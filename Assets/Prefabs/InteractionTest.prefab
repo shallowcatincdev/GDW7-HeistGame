@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 6827830972766473223}
   - component: {fileID: 7922641148728078190}
   - component: {fileID: 5503849513615242119}
-  - component: {fileID: 3330142503644151617}
   - component: {fileID: 6146668316427221345}
   m_Layer: 8
   m_Name: InteractionTest
@@ -141,70 +140,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Interactable
   prompt: {fileID: 6534858472960735022, guid: bcbb14851a7a00e44b7772a472bf6f4a, type: 3}
+  text: Makes Noise
+  maxDist: 10
+  removePromptWhenTriggered: 0
   activate:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 6146668316427221345}
         m_TargetAssemblyTypeName: MakeNoise, Assembly-CSharp
         m_MethodName: Noise
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  text: Test Text Make noise
---- !u!114 &3330142503644151617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2933276515056495176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e463a01d2b545b542a23d3f9a79ff4da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LookingAt
-  lookedAtEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5503849513615242119}
-        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: SpawnPrompt
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  stopLookedAtEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5503849513615242119}
-        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: RemovePrompt
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  activateEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 5503849513615242119}
-        m_TargetAssemblyTypeName: Interactable, Assembly-CSharp
-        m_MethodName: Activate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

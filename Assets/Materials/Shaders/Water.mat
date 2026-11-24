@@ -31,7 +31,9 @@ Material:
     - _Ripple_Densitiy: 100
     - _Ripple_Speed: 1.5
     - _Smoothness: 1
-    m_Colors: []
+    m_Colors:
+    - _Base_Color: {r: 0.009849284, g: 0.029768238, b: 0.03773582, a: 1}
+    - _Ripple_Color: {r: 0.1748348, g: 0.24304587, b: 0.25157225, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &5129750303587695067

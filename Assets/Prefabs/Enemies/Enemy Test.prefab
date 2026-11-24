@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 4284015811414151023}
   - component: {fileID: 7856593450656483323}
   - component: {fileID: 3445440243738971911}
+  - component: {fileID: 4878480256602997675}
   m_Layer: 3
   m_Name: Enemy Test
   m_TagString: Enemy
@@ -131,6 +132,8 @@ MonoBehaviour:
   wanderTimer: 30
   hasDestination: 0
   loud: 0
+  mode: 0
+  waypoints: []
 --- !u!114 &4284015811414151023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +186,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35c39fab8f0748d468ae888582f8f15d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DestroyObject
+--- !u!114 &4878480256602997675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2164594220099284433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0038c16c34866b4f9e25c9c0dc0f7e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Behavior::Unity.Behavior.BehaviorGraphAgent
+  m_Graph: {fileID: 566853412223765501, guid: 816267165d15ec0469f89aec4a19b1e1, type: 2}
+  m_BlackboardVariableOverridesList:
+  - rid: 6309218158604452504
+  m_OriginalGraph: {fileID: 0}
+  m_IsInitialised: 0
+  m_IsStarted: 0
+  references:
+    version: 2
+    RefIds:
+    - rid: 6309218158604452504
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1
+          m_Value1: 0
+        Name: Self
+        m_Value: {fileID: 2164594220099284433}
 --- !u!1 &5643028776007096967
 GameObject:
   m_ObjectHideFlags: 0

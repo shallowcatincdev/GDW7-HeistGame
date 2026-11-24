@@ -22,7 +22,18 @@ public class Enemy : MonoBehaviour
     private Transform target;
     private float timer;
 
-    // Use this for initialization
+
+    
+    public Mode mode;
+    public GameObject[] waypoints;
+
+    public void init(Mode _mode, GameObject[] _waypoints)
+    {
+        waypoints = _waypoints;
+        mode = _mode;
+    }
+
+
     void Start ()
     {
         agent = GetComponent<NavMeshAgent> ();

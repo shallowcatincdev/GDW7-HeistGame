@@ -10,3 +10,5 @@ public enum Status
 	Hunting,
 	Fighting
 }
+
+public enum Mode { stationary, patrol };

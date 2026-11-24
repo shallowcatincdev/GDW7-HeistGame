@@ -67,7 +67,10 @@ public class EnemyController : MonoBehaviour
         
         foreach (var t in spawnPoints)
         {
-            GameObject temp = Instantiate(enemyPrefab, t.transform.position, Quaternion.identity);
+            EnemySpawn spawn = t.GetComponent<EnemySpawn>();
+
+            GameObject temp = Instantiate(spawn.model, t.transform.position, Quaternion.identity);
+            temp.GetComponent<Enemy>().init(spawn.mode, spawn.waypoints);
             enemies.Add(temp.GetComponent<Enemy>());
         }
     }

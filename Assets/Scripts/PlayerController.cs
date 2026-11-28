@@ -43,8 +43,8 @@ public class PlayerController : MonoBehaviour
     Vector2 lookAmount;
     Vector2 velocity;
 
-    public int detectionRate = 0;
-    public bool isInBush = false;
+    //public int detectionRate = 0;
+    //public bool isInBush = false;
     private bool isClimbing = false;
 
     
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
 
         if (isClimbing)
         {
-            MovementHandler(); 
+            //MovementHandler(); 
             isClimbing = false;
         }
 
@@ -236,7 +236,7 @@ public class PlayerController : MonoBehaviour
 
         transform.rotation = targetRotation;
 
-            if (horizontal != Vector3.zero) // if moving update player rotation
+           /* if (horizontal != Vector3.zero) // if moving update player rotation
             {
                 targetRotation = Quaternion.Euler(0f, lookVert, 0f); // TODO: Smooth rotation for player model
             }
@@ -247,9 +247,9 @@ public class PlayerController : MonoBehaviour
             else if (rotVector.rotation.eulerAngles.y - transform.rotation.eulerAngles.y < maxRelativeRotAngle * -1)
             {
                 targetRotation = Quaternion.Euler(0, lookVert + maxRelativeRotAngle, 0);
-            }
+            } */
 
-            float step = modelRotSpeed * Time.deltaTime;
+            //float step = modelRotSpeed * Time.deltaTime;
             transform.rotation = targetRotation;
 
 

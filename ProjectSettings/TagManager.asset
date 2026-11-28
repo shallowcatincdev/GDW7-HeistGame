@@ -8,6 +8,7 @@ TagManager:
   - Interactable
   - EnemySpawn
   - Ladder
+  - Ground
   layers:
   - Default
   - TransparentFX
